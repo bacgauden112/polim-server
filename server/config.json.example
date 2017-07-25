@@ -1,0 +1,41 @@
+{
+  "restApiRoot": "/api",
+  "host": "0.0.0.0",
+  "port": 3000,
+  "remoting": {
+    "context": false,
+    "rest": {
+      "normalizeHttpPath": false,
+      "xml": false
+    },
+    "json": {
+      "strict": false,
+      "limit": "100kb"
+    },
+    "urlencoded": {
+      "extended": true,
+      "limit": "100kb"
+    },
+    "cors": false,
+    "handleErrors": false
+  },
+  "legacyExplorer": false,
+  "aclErrorStatus": 403,
+  "reCaptchaSecret": "6Lev08ISAAAAANsVuhIjsMe2gi4ukIAHgTxJyaUF",
+  "reCaptchaKey": "6Lev08ISAAAAAALU5ZWnxaHEz1uNxw6Uo3OEtPqZ",
+  "mailService": {
+      "_default": {
+        "transport": "ses",
+        "accessKeyId": "",
+        "secretAccessKey": "",
+        "rateLimit": 5,
+        "mailOptions": {
+          "from": "",
+          "sender": ""
+        }
+      }
+    },
+    "appUrl": {
+        "orderDetail": "http://192.168.10.250:4040/#/orders/{id}"
+      }
+}

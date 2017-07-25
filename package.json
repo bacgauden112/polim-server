@@ -1,0 +1,55 @@
+{
+  "name": "LoopbackApi",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node -r cls-hooked .",
+    "migrate": "node server/create-lb-tables.js",
+    "pretest": "",
+    "posttest": "nsp check",
+    "test": "mocha -t 10000 test/ --hideUrl true --recursive"
+  },
+  "dependencies": {
+    "amqplib": "^0.4.2",
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "crawler": "^1.0.2",
+    "event-stream": "^3.3.4",
+    "helmet": "^1.3.0",
+    "htmlencode": "0.0.4",
+    "isomorphic-fetch": "^2.2.1",
+    "loopback": "^3.0.0-alpha.1",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^2.4.0",
+    "loopback-component-storage": "^1.10.0",
+    "loopback-connector-postgresql": "https://github.com/kiennx/loopback-connector-postgresql/tarball/master",
+    "loopback-context": "^3.3.0",
+    "md5": "^2.2.1",
+    "moment": "^2.15.1",
+    "nodemailer-ses-transport": "^1.5.0",
+    "numeral": "^2.0.4",
+    "redis": "^2.6.2",
+    "serve-favicon": "^2.0.1",
+    "socket.io": "^1.7.3",
+    "socketio-auth": "0.0.5",
+    "strong-error-handler": "^1.0.1",
+    "winston": "^2.2.0",
+    "winston-daily-rotate-file": "^1.3.1",
+    "xlsx": "^0.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "eslint-config-loopback": "^4.0.0",
+    "handlebars": "^4.0.10",
+    "loopback-testing": "^1.3.0",
+    "minimist": "^1.2.0",
+    "nightwatch": "^0.9.8",
+    "nsp": "^2.1.0"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "description": "LBR"
+}

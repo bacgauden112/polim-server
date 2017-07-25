@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../node_modules/loopback-ds-computed-mixin/lib",
+      "../common/mixins",
+      "./mixins"
+    ]
+  }
+}
