@@ -1,0 +1,8 @@
+declare namespace Models {
+export interface {{name}} extends ModelInstance{
+    id? : number;
+{{#each properties}}
+    {{name}}? : {{type}};
+{{/each}}
+    }
+}

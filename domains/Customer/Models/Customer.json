@@ -1,0 +1,265 @@
+{
+  "name": "Customer",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "Customer"
+    }
+  },
+  "hidden": [
+    "oldPasswords"
+  ],
+  "relations": {
+    "customer_setting": {
+      "type": "hasMany",
+      "model": "CustomerSetting",
+      "foreignKey": "customerId"
+    },
+    "integrations": {
+      "type": "hasMany",
+      "model": "Integration",
+      "foreignKey": "integrationId",
+      "through": "CustomerIntegration"
+    }
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "email",
+        "dataType": "varchar",
+        "dataLength": 256
+      }
+    },
+    "password": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "password",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "firstName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "firstName",
+        "dataType": "varchar",
+        "dataLength": 50
+      }
+    },
+    "lastName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "lastName",
+        "dataType": "varchar",
+        "dataLength": 50
+      }
+    },
+    "fullName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "fullName",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "gender": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "gender",
+        "dataType": "SMALLINT"
+      }
+    },
+    "birthday": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "birthday",
+        "dataType": "DATE"
+      }
+    },
+    "emailVerified": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "isEmailVerified",
+        "dataType": "SMALLINT"
+      }
+    },
+    "state": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "state",
+        "dataType": "SMALLINT"
+      }
+    },
+    "avatar": {
+      "type": "string"
+    },
+    "registeredDate": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "registeredDate"
+      }
+    },
+    "needChangePass": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "needChangePass"
+      }
+    },
+    "lastLogin": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "lastLogin"
+      }
+    },
+    "lastChangedPass": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "lastChangedPass"
+      }
+    },
+    "verificationToken": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "verificationToken"
+      }
+    },
+    "oldPasswords": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "oldPasswords",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "code": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "code",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "lastUsingService": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "lastUsingService"
+      }
+    },
+    "mobile": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "mobile",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "realBalance": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "realBalance"
+      }
+    },
+    "bankAccountName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "bankAccountName",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "bankAccountNo": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "bankAccountNo",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "bankName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "bankName",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "bankBranch": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "bankBranch",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "firstUsingService": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "firstUsingService"
+      }
+    }
+  },
+  "validations": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "USER",
+      "principalId": "1",
+      "permission": "ALLOW",
+      "model": "*"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "me"
+      ]
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$staff",
+      "permission": "ALLOW",
+      "property": [
+        "find"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": [
+        "changePassword"
+      ]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$staff",
+      "permission": "ALLOW",
+      "property": ["genKeyCustomersCsv"]
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": ["csvCustomers"]
+    }
+  ],
+  "methods": {}
+}

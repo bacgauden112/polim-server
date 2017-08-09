@@ -38,7 +38,13 @@
     }
   },
   "session": {},
-  "auth": {},
+  "auth": {
+    "loopback#token": {
+      "params": {
+        "model": "CustomerAccessToken"
+      }
+    }
+  },
   "parse": {
     "body-parser#json": {},
     "body-parser#urlencoded": {

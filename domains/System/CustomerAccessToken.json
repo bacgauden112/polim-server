@@ -1,0 +1,24 @@
+{
+  "name": "CustomerAccessToken",
+  "base": "AccessToken",
+  "options": {
+    "postgresql": {
+      "table": "CustomerAccessToken"
+    }
+  },
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "idName": "id",
+      "polymorphic": {
+        "idType": "string",
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      }
+    }
+  },
+  "properties": {},
+  "validations": [],
+  "acls": [],
+  "methods": {}
+}

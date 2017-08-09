@@ -1,0 +1,54 @@
+{
+  "request": {
+    "seller": {
+      "id": "123456",
+      "name": "heelShop",
+      "source": "taobao.com"
+    },
+    "items": [
+      {
+        "originId": 12,
+        "originName": "低帮鞋",
+        "name": "Giày thấp",
+        "originUrl": "https://m.taobao.com/markets/tbhome/yhh-detail?spm=a21wu.241046-global.2350523827.2.4519fd50NOWXte&contentId=2300000200232057058",
+        "mainImage": "https://img.alicdn.com/tps/i3/TB1BJp4QpXXXXXyXXXX37P2.FXX_300x300.jpg",
+        "variantImage": "https://img.alicdn.com/tps/i3/TB1BJp4QpXXXXXyXXXX37P2.FXX_300x300.jpg",
+        "quantity": 40,
+        "originPrice": 500,
+        "salePrice": 400,
+        "originCurrency": "CNY",
+        "properties": [
+          {
+            "id":"12:45039",
+            "originName": "低帮",
+            "name": "Đen"
+          }
+        ],
+        "note": "Ghi chú cho sản phẩm"
+      }
+    ],
+    "features": [
+      {
+        "code": "EXPRESS"
+      }
+    ]
+  },
+  "response": {
+    "total": 1200000,
+    "currency": "VND",
+    "serviceFees": [
+      {
+        "code": "EXPRESS",
+        "name": "Phí chuyển phát nhanh",
+        "amount": 120000,
+        "currency": "VND"
+      },
+      {
+        "code": "WOOD_CRATING",
+        "name": "Phí đóng gỗ",
+        "amount": 100000,
+        "currency": "VND"
+      }
+    ]
+  }
+}

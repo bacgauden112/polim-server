@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "code": "INTERNATIONAL",
+      "name": "Vận chuyển quốc tế",
+      "isRequired": true
+    }
+  ],
+  "features": [
+    {
+      "code": "WOOD_CRATING",
+      "name": "Đóng gỗ",
+      "icon": "http://seudo.vn/donggo.png",
+      "enabled": true,
+      "pending": true,
+      "default": false
+    },
+    {
+      "code": "EXPRESS",
+      "name": "Chuyển phát nhanh",
+      "icon": "http://seudo.vn/express.png",
+      "enabled": true,
+      "pending": false,
+      "default": false,
+      "groupCode": "INTERNATIONAL",
+      "requires": []
+    },
+    {
+      "code": "SAVING",
+      "name": "Chuyển phát tiết kiệm",
+      "icon": "http://seudo.vn/saving.png",
+      "enabled": true,
+      "pending": false,
+      "default": true,
+      "groupCode": "INTERNATIONAL",
+      "requires": []
+    },
+    {
+      "code": "DIRECT_TO_HOME",
+      "name": "Chuyển thẳng",
+      "icon": null,
+      "enabled": true,
+      "pending": false,
+      "default": false,
+      "requires": ["EXPRESS"]
+    }
+  ]
+}

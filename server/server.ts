@@ -1,3 +1,4 @@
+import {ErrorFactory} from "./utils/ErrorFactory";
 /**
  * Created by Piggat on 7/25/2017.
  */
@@ -8,10 +9,9 @@ let LoopBackContext = require('loopback-context');
 let path = require('path');
 
 let app = module.exports = loopback();
-
-//region -- winston config, we need to move this to config.json --
+//region -- winston config, we need to move this to Setting.json --
 let winston = require('winston');
-//let SystemSettings = require("../common/SystemSettings").SystemSettings;
+let SystemSetting = require("../domains/System/config/SystemSetting").SystemSetting;
 winston.add(require('winston-daily-rotate-file'), {
     datePattern: 'yyyyMMdd',
     dirname: path.join(__dirname, "log"),
@@ -20,7 +20,7 @@ winston.add(require('winston-daily-rotate-file'), {
 winston.remove(winston.transports.Console);
 winston.level = 'debug';
 
-global.dirname = __dirname;
+//global.dirname = __dirname;
 //winston.debug('winston testing at' + path.join(__dirname, "log-access", "log_file.log"));
 //endregion
 
@@ -28,7 +28,8 @@ let env = process.argv[2] || 'dev';
 
 //process.env.TZ = 'Asia/Ho_Chi_Minh';
 
-console.info('env:'+ env);
+//console.info('env:'+ env);
+//TODO: require env from node.js instead of using parameter
 switch (env) {
     case 'dev':
         process.on('uncaughtException', function (err) {
@@ -62,7 +63,7 @@ app.start = function () {
     });
 };
 
-// Bootstrap the application, configure models, datasources and middleware.
+// Bootstrap the application, configure Models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts
 boot(app, __dirname, function (err) {
     let helmet = require('helmet');
@@ -74,6 +75,99 @@ boot(app, __dirname, function (err) {
     //TODO: CORS enable by config
     app.use(cors(corsOptions));
 
+    //app.use(cors());
+
+   /* app.use(function setCurrentUser(req, res, next) {
+        if (req.accessToken == null) {
+            return next();
+        }
+
+        if (req.accessToken.userId == null) {
+            let commonAccessToken = app.models.CommonAccessToken; //.getModel('CommonAccessToken');
+            commonAccessToken.findById(req.accessToken.id, function(err, token) {
+                if (err) {
+                    return next(err);
+                }
+
+                token.updateAttributes({
+                    created : new Date(),
+                    userType: token.userType
+                });
+
+                // commonAccessToken.replaceById(req.accessToken.id, {
+                //     created : new Date(),
+                //     userType: token.userType
+                // }, function() {
+                //   //do nothing here, just increase token live time
+                // });
+
+                req.accessToken = token;
+                next();
+                if (token.userType == 'staff') {
+                    /!*var app = require('../server');*!/
+                    let user = app.models.Users;
+                    user.findById(req.accessToken.userId, function (err, currentUser) {
+                        if (err) {
+                            return next(err);
+                        }
+
+                        let loopbackContext = LoopBackContext.getCurrentContext();
+                        if (loopbackContext) {
+                            loopbackContext.set('currentUser', currentUser);
+                            loopbackContext.set('currentUserId', req.accessToken.userId);
+                            loopbackContext.set('accessToken', req.accessToken);
+                        }
+
+                        if (currentUser.needChangePass > 0) {
+                            let url = req.url.toLowerCase();
+                            if (url.indexOf('/api/users/changepassword')=== -1) {
+                                let error = new Error('Bạn cần phải đổi mật khẩu mới trước khi sử dụng hệ thống');
+                                error.statusCode = 400;
+                                error.code = 'YOU_MUST_CHANGE_YOUR_PASSWORD';
+                                error.name = 'YOU_MUST_CHANGE_YOUR_PASSWORD';
+                                return next(error);
+                            }
+                        }
+                        next();
+                    })
+                }
+                else if (token.userType == 'customer') {
+                    let customer = app.models.Customers;
+                    customer.findById(req.accessToken.userId, function (err, currentCustomer) {
+                        if (err) {
+                            return next(err);
+                        }
+
+                        let loopbackContext = LoopBackContext.getCurrentContext();
+                        if (loopbackContext) {
+                            loopbackContext.set('currentCustomer', currentCustomer);
+                            loopbackContext.set('currentCustomerId', req.accessToken.userId);
+                            loopbackContext.set('accessToken', req.accessToken);
+                        }
+
+                        if (currentCustomer.needChangePass > 0) {
+                            let url = req.url.toLowerCase();
+                            if (url.indexOf('/api/customers/changepassword')=== -1) {
+                                let error = new Error('Bạn cần phải đổi mật khẩu mới trước khi sử dụng hệ thống');
+                                error.statusCode = 400;
+                                error.code = 'YOU_MUST_CHANGE_YOUR_PASSWORD';
+                                error.name = 'YOU_MUST_CHANGE_YOUR_PASSWORD';
+                                return next(error);
+                            }
+                        }
+                        next();
+                    })
+                }
+                else {//if (token.userType == 'customer') {
+                    next();
+                }
+            });
+        }
+        else {
+            next();
+        }
+    });*/
+
     if (err) throw err;
 
     //region context testing
@@ -81,31 +175,31 @@ boot(app, __dirname, function (err) {
 
     // start the server if `$ node server.js`
     if (require.main === module) {
-        //app.start();
-        app.io = require('socket.io')(app.start());
-        app.ioAuth = {};
-        app.socketAuth = {};
-
-        require('socketio-auth')(app.io, {
-            authenticate: function (socket, value, callback) {
-
-                let AccessToken = app.models.CommonAccessToken;
-                //get credentials sent by the client
-                AccessToken.authenticateSocketIo(value, callback); //find function..
-            } //authenticate function..
-        });
-
-        app.io.on('connection', function (socket) {
-            console.log('a user connected');
-            socket.on('disconnect', function () {
-                console.log('user disconnected');
-                delete app.socketAuth[socket.id];
-            });
-        });
+        app.start();
+        // app.io = require('socket.io')(app.start());
+        // app.ioAuth = {};
+        // app.socketAuth = {};
+        //
+        // require('socketio-auth')(app.io, {
+        //     authenticate: function (socket, value, callback) {
+        //
+        //         let AccessToken = app.Models.CommonAccessToken;
+        //         //get credentials sent by the client
+        //         AccessToken.authenticateSocketIo(value, callback); //find function..
+        //     } //authenticate function..
+        // });
+        //
+        // app.io.on('connection', function (socket) {
+        //     console.log('a user connected');
+        //     socket.on('disconnect', function () {
+        //         console.log('user disconnected');
+        //         delete app.socketAuth[socket.id];
+        //     });
+        // });
     }
 
-    let systemConfigModel = app.models.SystemConfig;
-    //SystemSettings.init(systemConfigModel);
+    let settingModel = app.models.Setting;
+    SystemSetting.init(settingModel);
 });
 
 //region -- handle api errors --
@@ -123,4 +217,6 @@ app.get('remoting').errorHandler = {
     },
     debug: false
 };
+
+
 //endregion

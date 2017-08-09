@@ -1,0 +1,33 @@
+{
+  "name": "Customer",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "oldPasswords"
+  ],
+  "properties": {
+    "email": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "email",
+        "dataType": "varchar",
+        "dataLength": 256
+      }
+    }
+  },
+  "validations": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "USER",
+      "principalId": "1",
+      "permission": "ALLOW",
+      "model": "*"
+    }
+  ],
+  "methods": {}
+}

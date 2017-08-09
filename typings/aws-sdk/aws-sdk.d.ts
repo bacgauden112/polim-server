@@ -295,7 +295,7 @@ declare module "aws-sdk" {
 		 */
     describeClusters(params: ecs.DescribeClustersParams, callback: (err: any, data: any) => void): void;
 		/**
-		 * Describes the specified services running in your cluster.
+		 * Describes the specified Services running in your cluster.
 		 */
     describeServices(params: ecs.DescribeServicesParams, callback: (err: any, data: any) => void): void;
 		/**
@@ -1633,7 +1633,7 @@ declare module "aws-sdk" {
 
     export interface DescribeServicesParams {
 			/**
-			 * A list of services to describe.
+			 * A list of Services to describe.
 			 */
       services: string[];
 			/**

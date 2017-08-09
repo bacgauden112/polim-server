@@ -1,0 +1,70 @@
+{
+  "name": "Integration",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "Integrations"
+    }
+  },
+  "properties": {
+    "integrationName": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "integrationName",
+        "dataType": "varchar",
+        "dataLength": 256
+      }
+    },
+    "integrationCode": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "integrationCode",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "secretKey": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "secretKey",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "classPath": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "classPath",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "integration_setting": {
+      "type": "hasMany",
+      "model": "IntegrationSetting",
+      "foreignKey": "integrationId"
+    },
+    "integration_customer_setting": {
+      "type": "hasMany",
+      "model": "CustomerSetting",
+      "foreignKey": "integrationId"
+    },
+    "customers": {
+      "type": "hasMany",
+      "model": "Customer",
+      "foreignKey": "customerId",
+      "through": "CustomerIntegration"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

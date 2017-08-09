@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "code": "NOT_FOUND",
+      "message": "What you see is not what you got"
+    },
+    {
+      "code": "FOUND",
+      "message": "what you got is not what you see"
+    }
+  ]
+}

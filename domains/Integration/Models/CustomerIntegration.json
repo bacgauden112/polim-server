@@ -1,0 +1,49 @@
+{
+  "name": "CustomerIntegration",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "CustomerIntegration"
+    }
+  },
+  "properties": {
+    "customerId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "customerId"
+      }
+    },
+    "integrationId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "integrationId"
+      }
+    },
+    "externalId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "externalId"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "customerId"
+    },
+    "integration": {
+      "type": "belongsTo",
+      "model": "Integration",
+      "foreignKey": "integrationId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
