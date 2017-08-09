@@ -87,7 +87,6 @@
         }
       }
     }
-    "public": true
   },
   "EventQueue": {
     "dataSource": "db",
