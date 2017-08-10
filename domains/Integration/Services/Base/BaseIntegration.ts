@@ -57,10 +57,18 @@ export class BaseIntegration extends BaseDomainService {
      * Create API client object
      */
     protected async createClient(customerId: number): Promise<BaseAPIClient> {
+        let accessToken = await this.getAccessToken(customerId);
+        return this.createClientWithAccessToken(accessToken);
+    }
+
+    /**
+     * Create API client object with known access token
+     * @param accessToken
+     * @returns {Promise<BaseAPIClient>}
+     */
+    protected async createClientWithAccessToken(accessToken:string):Promise<BaseAPIClient> {
         let client = new BaseAPIClient();
-
-        client.AccessToken = await this.getAccessToken(customerId);
-
+        client.AccessToken = accessToken;
         return client;
     }
 

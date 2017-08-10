@@ -16,9 +16,9 @@ export class SeuDoService extends BaseIntegration {
     /**
      * Create client object
      */
-    protected async createClient(customerId: number):Promise<BaseAPIClient> {
+    protected async createClientWithAccessToken(accessToken: string):Promise<BaseAPIClient> {
         let client = new APIClient();
-        client.AccessToken = this.getAccessToken(customerId);
+        client.AccessToken = accessToken;
         return client;
     }
 }
