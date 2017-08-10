@@ -72,6 +72,11 @@ export class BaseIntegration extends BaseDomainService {
         return client;
     }
 
+    /**
+     * Get access token from customer id
+     * @param customerId
+     * @returns {Promise<string>}
+     */
     protected async getAccessToken(customerId:number):Promise<string> {
         let loopback = require('loopback')();
         let customerIntegrationModel = loopback.models.CustomerIntegration;
