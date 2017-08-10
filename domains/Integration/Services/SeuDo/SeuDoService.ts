@@ -1,6 +1,8 @@
 import {BaseIntegration} from "../Base/BaseIntegration";
 import {KeySecretAPIClient} from "./KeySecretAPIClient";
 import {BasePurchasing} from "../Base/BasePurchasing";
+import {APIClient} from "./APIClient";
+import {BaseAPIClient} from "../Base/BaseAPIClient";
 /**
  * Created by Piggat on 8/4/2017.
  */
@@ -14,8 +16,9 @@ export class SeuDoService extends BaseIntegration {
     /**
      * Create client object
      */
-    protected createClient() {
-        this._client = new KeySecretAPIClient(this.getSetting('API_KEY'),
-            this.getSetting('API_SECRET'));
+    protected async createClient(customerId: number):Promise<BaseAPIClient> {
+        let client = new APIClient();
+        client.AccessToken = this.getAccessToken(customerId);
+        return client;
     }
 }

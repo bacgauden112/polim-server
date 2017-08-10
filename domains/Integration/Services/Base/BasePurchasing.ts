@@ -11,8 +11,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         GET_EXCHANGE_API: 'GET_EXCHANGE_API'
     };
 
-    public async getExchange(appliedTime = new Date()): Promise<IExchangeRate> {
-        let client:BaseAPIClient = this.getClient();
+    public async getExchange(customerId: number, appliedTime = new Date()): Promise<IExchangeRate> {
+        let client:BaseAPIClient = await this.createClient(customerId);
 
         let data:any = {};
         if (appliedTime) {

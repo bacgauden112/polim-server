@@ -1,6 +1,6 @@
 export interface IPurchasing {
-    getExchange(): Promise<IExchangeRate>;
-    getExchange(appliedTime): Promise<IExchangeRate>;
+    getExchange(customerId:number): Promise<IExchangeRate>;
+    getExchange(customerId:number, appliedTime: Date): Promise<IExchangeRate>;
 }
 
 export interface IExchangeRate {

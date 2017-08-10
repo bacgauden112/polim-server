@@ -29,6 +29,15 @@
       "postgresql": {
         "columnName": "externalId"
       }
+    },
+    "accessToken": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "externalId",
+        "dataType": "varchar",
+        "dataLength": 255
+      }
     }
   },
   "validations": [],

@@ -1,6 +1,8 @@
 import {BaseDomainService} from "../../../Base/BaseDomainService";
 import IntegrationSetting = Models.IntegrationSetting;
 import {BaseAPIClient} from "./BaseAPIClient";
+import Customer = Models.Customer;
+import CustomerIntegration = Models.CustomerIntegration;
 export class BaseIntegration extends BaseDomainService {
     protected _name: string;
     protected _id: number;
@@ -52,21 +54,31 @@ export class BaseIntegration extends BaseDomainService {
     }
 
     /**
-     * Create client object
+     * Create API client object
      */
-    protected createClient() {
-        this._client = new BaseAPIClient();
+    protected async createClient(customerId: number): Promise<BaseAPIClient> {
+        let client = new BaseAPIClient();
+
+        client.AccessToken = await this.getAccessToken(customerId);
+
+        return client;
     }
 
-    /**
-     * Get current client object
-     * @returns {any}
-     */
-    public getClient() {
-        if (!this._client) {
-            this.createClient();
+    protected async getAccessToken(customerId:number):Promise<string> {
+        let loopback = require('loopback')();
+        let customerIntegrationModel = loopback.models.CustomerIntegration;
+
+        let integration:CustomerIntegration = customerIntegrationModel.findOne({
+            where: {
+                customerId: customerId
+            }
+        });
+
+        if (!integration) {
+            throw new Error(`Customer ${customerId} has not installed ${this._name} yet`);
         }
-        return this._client;
+
+        return integration.accessToken;
     }
 
     /**
