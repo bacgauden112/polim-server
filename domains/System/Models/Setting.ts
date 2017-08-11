@@ -1,4 +1,4 @@
-import {SystemSetting} from "../config/SystemSetting";
+import {SystemSetting} from "../Config/SystemSetting";
 let app = require('../../../server/server');
 
 export = function (Setting) {
@@ -28,7 +28,7 @@ export = function (Setting) {
 
             next(null, configs);
         });
-    }
+    };
 
     Setting.remoteMethod("appSettings", {
         accepts: [{arg: 'app', type: 'string'}],
@@ -38,7 +38,7 @@ export = function (Setting) {
 
     Setting.systemSettings = function (key, next) {
         next(null, SystemSetting.get(key, ''));
-    }
+    };
 
     Setting.remoteMethod("systemSettings", {
         accepts: [{arg: 'key', type: 'string'}],

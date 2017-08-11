@@ -22,14 +22,25 @@ export class ErrorFactory{
      * @param httpCode
      * @param code
      */
-    public static createError(message: string, httpCode: number, code: string) {
+    public static createError(message: string, httpCode: number, code: string, details = null) {
         let err:any = new Error(message);
         err.statusCode = httpCode;
         err.code = code;
         err.name = code;
         err.message = message;
+
+        if (err.statusCode < 500 && details) {
+            err.details = details;
+        }
         return err;
     }
 
     //public static createValidationError()
+
+    public static ERRORS = {
+        E101_NOT_IMPLEMENTED: {
+            code: 'E101_NOT_IMPLEMENTED',
+            message: 'This function has not yet implemented, either because it is not supported yet or integration app has not support it'
+        }
+    }
 }

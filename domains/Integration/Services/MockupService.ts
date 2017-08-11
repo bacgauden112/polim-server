@@ -9,7 +9,7 @@ import {IExchangeRate} from "./Base/IPurchasing";
  */
 export class MockupService extends BaseIntegration implements IPurchasing{
     //region -- IPurchasing implement --
-    async getExchange(appliedTime = new Date()): Promise<IExchangeRate> {
+    async getExchange(customerId, appliedTime = new Date()): Promise<IExchangeRate> {
         return {
             rate: 3000,
             baseCurrency: 'CNY',

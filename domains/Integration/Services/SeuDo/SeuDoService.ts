@@ -9,8 +9,13 @@ import {BaseAPIClient} from "../Base/BaseAPIClient";
 export class SeuDoService extends BaseIntegration {
     constructor(id, name, code, secret_key) {
         super(id, name, code, secret_key);
+    }
 
-        this.addImplementation(new BasePurchasing(id, name, code, secret_key));
+    public async loadSetting() {
+        await super.loadSetting();
+
+        this.addImplementation('IPurchasing',new BasePurchasing(
+            this._id, this._name, this._code, this._secret_key));
     }
 
     /**

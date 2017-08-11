@@ -24,8 +24,7 @@
       "required": true,
       "postgresql": {
         "columnName": "value",
-        "dataType": "varchar",
-        "dataLength": 128
+        "dataType": "text"
       }
     },
     "app": {

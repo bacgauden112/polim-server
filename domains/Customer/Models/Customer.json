@@ -22,21 +22,41 @@
       "model": "Integration",
       "foreignKey": "integrationId",
       "through": "CustomerIntegration"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "PolimAccessToken",
+      "polymorphic": {
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      },
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "properties": {
     "email": {
       "type": "string",
-      "required": false,
+      "required": true,
       "postgresql": {
         "columnName": "email",
         "dataType": "varchar",
         "dataLength": 256
       }
     },
+    "username": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "username",
+        "dataType": "varchar",
+        "dataLength": 256
+      }
+    },
     "password": {
       "type": "string",
-      "required": false,
+      "required": true,
       "postgresql": {
         "columnName": "password",
         "dataType": "varchar",

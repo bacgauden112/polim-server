@@ -3,6 +3,7 @@ import IntegrationSetting = Models.IntegrationSetting;
 import {BaseAPIClient} from "./BaseAPIClient";
 import Customer = Models.Customer;
 import CustomerIntegration = Models.CustomerIntegration;
+import LoopBackBase = LoopBack.LoopBackBase;
 export class BaseIntegration extends BaseDomainService {
     protected _name: string;
     protected _id: number;
@@ -10,6 +11,7 @@ export class BaseIntegration extends BaseDomainService {
     protected _secret_key: string;
     protected _settings:any = {};
     protected _client;
+    protected _implementation: any;
 
     constructor(id, name, code, secret_key) {
         super();
@@ -18,6 +20,8 @@ export class BaseIntegration extends BaseDomainService {
         this._code = code;
         this._secret_key = secret_key;
         this._settings = {};
+
+        this._implementation = {};
     }
 
     /**
@@ -25,8 +29,7 @@ export class BaseIntegration extends BaseDomainService {
      * @returns {Promise<void>}
      */
     public async loadSetting() {
-        let loopback = this._loopback();
-        let settingModels = loopback.models.IntegrationSetting;
+        let settingModels = this._loopback.getModel('IntegrationSetting');
 
         let settings:IntegrationSetting[] = await settingModels.find({
             where: {
@@ -36,7 +39,7 @@ export class BaseIntegration extends BaseDomainService {
         });
 
         for (let setting of settings) {
-            this._settings[setting.key] = this._settings[setting.value];
+            this._settings[setting.key] = setting.value;
         }
     }
 
@@ -78,12 +81,13 @@ export class BaseIntegration extends BaseDomainService {
      * @returns {Promise<string>}
      */
     protected async getAccessToken(customerId:number):Promise<string> {
-        let loopback = require('loopback')();
-        let customerIntegrationModel = loopback.models.CustomerIntegration;
+        let loopback:LoopBackBase = require('loopback');
+        let customerIntegrationModel = loopback.getModel('CustomerIntegration');
 
-        let integration:CustomerIntegration = customerIntegrationModel.findOne({
+        let integration:CustomerIntegration = await customerIntegrationModel.findOne({
             where: {
-                customerId: customerId
+                customerId: customerId,
+                integrationId: this._id
             }
         });
 
@@ -98,9 +102,29 @@ export class BaseIntegration extends BaseDomainService {
      * Thêm implementation vào trong đối tượng này, sử dụng để tạo ra các dịch vụ phức hợp
      * Kết hợp của nhiều component khác nhau
      * (hiện chưa sử dụng)
+     * @param name
      * @param desiredClassObject
      */
-    public addImplementation(desiredClassObject) {
-        Object.assign(this,desiredClassObject);
+    public addImplementation(name:string, desiredClassObject: BaseIntegration) {
+        //overwrite desired base function with my function
+        desiredClassObject.createClient = this.createClient;
+        desiredClassObject.createClientWithAccessToken = this.createClientWithAccessToken;
+        desiredClassObject.getAccessToken = this.getAccessToken;
+        desiredClassObject._settings = this._settings;
+
+        this._implementation[name] = desiredClassObject;
+    }
+
+    /**
+     * Lấy một implementation từ trong class gốc
+     * @param name
+     * @returns {any}
+     */
+    public getImplementation<T>(name) {
+        if (this._implementation.hasOwnProperty(name)) {
+            return this._implementation[name];
+        }
+
+        return null;
     }
 }

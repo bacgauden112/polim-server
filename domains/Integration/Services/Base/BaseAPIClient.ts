@@ -27,10 +27,10 @@ export class BaseAPIClient {
             url = url + this.getQueryString(data);
         }
 
-        let argv = require('minimist')(process.argv.slice(2));
-        if (!argv.hideUrl) {
-            console.info(method, url);
-        }
+        // let argv = require('minimist')(process.argv.slice(2));
+        // if (!argv.hideUrl) {
+        //     console.info(method, url);
+        // }
 
         let fetched = await fetch(url, config);
         return fetched;
@@ -52,7 +52,12 @@ export class BaseAPIClient {
                 continue;
             }
             if (typeof data[key] == 'object') {
-                query += encodeURIComponent(key)+"="+encodeURIComponent(JSON.stringify(data[key]))+"&";
+                if (typeof data[key].toJSON === 'function') {
+                    query += encodeURIComponent(key)+"="+encodeURIComponent(data[key].toJSON())+"&";
+                }
+                else {
+                    query += encodeURIComponent(key)+"="+encodeURIComponent(JSON.stringify(data[key]))+"&";
+                }
             }
             else {
                 query += encodeURIComponent(key)+"="+encodeURIComponent(data[key])+"&";

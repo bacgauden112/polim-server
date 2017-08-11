@@ -5,7 +5,7 @@
   "options": {
     "validateUpsert": true,
     "postgresql": {
-      "table": "Integrations"
+      "table": "Integration"
     }
   },
   "properties": {

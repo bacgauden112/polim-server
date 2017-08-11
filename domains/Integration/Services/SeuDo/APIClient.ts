@@ -1,4 +1,5 @@
 import {BaseAPIClient} from "../Base/BaseAPIClient";
+import {Logger} from "../../../../libs/Logger";
 /**
  * Created by Piggat on 8/9/2017.
  */
@@ -28,5 +29,37 @@ export class APIClient extends BaseAPIClient {
         }
 
         return query
+    }
+
+    /**
+     * Overwrite request, because SD return its data in data property instead of root
+     * @param url
+     * @param method
+     * @param data
+     */
+    public async request(url, method, data) {
+        let response = await super.request(url, method, data);
+        if (response.status != 200) {
+            let logger = Logger.factory('integration');
+            let context = {
+                request: {
+                    url: url,
+                    data: data
+                },
+                response: await response.text()
+            };
+            logger.error(new Error("Error response from server"), context)
+            return response;
+        }
+        else {
+            data = await response.json();
+
+            return {
+                status: data.error ? 500 : 200,
+                json: function() {
+                    return data;
+                }
+            };
+        }
     }
 }

@@ -1,9 +1,9 @@
 declare namespace Models {
 export interface CustomerIntegration extends ModelInstance{
     id? : number;
-    customerId? : Number;
-    integrationId? : Number;
-    externalId? : Number;
+    customerId? : number;
+    integrationId? : number;
+    externalId? : number;
     accessToken? : string;
     }
 }

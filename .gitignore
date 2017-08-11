@@ -71,3 +71,4 @@ server/component-config.json
 
 # mocha config
 test/mocha.opts
+test/test.ts

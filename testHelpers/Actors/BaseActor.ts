@@ -8,7 +8,15 @@ export class BaseActor {
     protected _accessToken;
 
     constructor() {
-        this._polimClient = new PolimClient();
+        let argv = require('minimist')(process.argv.slice(2));
+        let baseUrl:string;
+        if (argv.baseUrl) {
+            baseUrl = argv.baseUrl;
+        }
+        else {
+            baseUrl = 'http://localhost:3000/api/';
+        }
+        this._polimClient = new PolimClient(baseUrl);
     }
 
     public get AccessToken() {

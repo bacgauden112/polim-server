@@ -11,7 +11,7 @@ let path = require('path');
 let app = module.exports = loopback();
 //region -- winston config, we need to move this to Setting.json --
 let winston = require('winston');
-let SystemSetting = require("../domains/System/config/SystemSetting").SystemSetting;
+let SystemSetting = require("../domains/System/Config/SystemSetting").SystemSetting;
 winston.add(require('winston-daily-rotate-file'), {
     datePattern: 'yyyyMMdd',
     dirname: path.join(__dirname, "log"),

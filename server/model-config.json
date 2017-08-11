@@ -6,32 +6,20 @@
       "../domains/System/Models",
       "../domains/Customer/Models",
       "../domains/Integration/Models",
+      "../domains/Purchasing/Models",
       "./models"
     ],
     "mixins": [
       "loopback/common/mixins",
       "loopback/server/mixins",
-      "../node_modules/loopback-ds-computed-mixin/lib",
       "../common/mixins",
       "../libs/mixins",
       "./mixins"
     ]
   },
-  "AccessToken": {
+  "PolimAccessToken": {
     "dataSource": "db",
-    "public": false,
-    "options": {
-      "postgresql": {
-        "table": "AccessToken"
-      }
-    },
-    "relations": {
-      "user": {
-        "type": "belongsTo",
-        "model": "Customer",
-        "foreignKey": "userId"
-      }
-    }
+    "public": false
   },
   "ACL": {
     "dataSource": "db",
@@ -107,5 +95,9 @@
   "CustomerSetting": {
     "dataSource": "db",
     "public": false
+  },
+  "PurchaseOrder": {
+    "dataSource": null,
+    "public": true
   }
 }

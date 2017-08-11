@@ -20,13 +20,17 @@ export class CustomerActor extends BaseActor{
         return this._username;
     }
 
+    public get Customer() {
+        return this._customer;
+    }
+
     /**
      * Đăng nhập vào tài khoản của khách bằng biện pháp can thiệp database
      */
     public async backdoorLogin() {
         let app = PolimServerApp.getInstance();
 
-        let tokenModel = app.Server.models.AccessToken;
+        let tokenModel = app.Server.models.PolimAccessToken;
         let accessToken = await tokenModel.create({
             id: RandomUtils.randomString(64),
             ttl: 1209600,
@@ -57,6 +61,24 @@ export class CustomerActor extends BaseActor{
         }
 
         let customer = customers[0];
+
+        let actor = new CustomerActor(customer.username, "");
+        actor._customer = customer;
+        return actor;
+    }
+
+    /**
+     * Lấy về khách hàng Mock, khách hàng này cần setup và cài đặt tất cả các ứng dụng mock
+     * @returns {Promise<CustomerActor>}
+     */
+    public static async mockCustomer(): Promise<CustomerActor> {
+        let app:PolimServerApp = PolimServerApp.getInstance();
+        let customerModel = app.Server.models.Customer;
+        let customer = await customerModel.findOne({
+            where: {
+                username: 'mock_tester'
+            }
+        });
 
         let actor = new CustomerActor(customer.username, "");
         actor._customer = customer;

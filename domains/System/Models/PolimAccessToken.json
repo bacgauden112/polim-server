@@ -1,0 +1,29 @@
+{
+  "name": "PolimAccessToken",
+  "base": "AccessToken",
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "AccessToken"
+    }
+  },
+  "properties": {
+  },
+  "hidden": [],
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "idName": "id",
+      "polymorphic": {
+        "idType": "string",
+        "foreignKey": "userId",
+        "discriminator": "principalType"
+      }
+    }
+  },
+  "methods": {},
+  "scope": {
+    "order": ["id"]
+  }
+}

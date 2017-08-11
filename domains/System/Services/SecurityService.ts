@@ -15,6 +15,6 @@ export class SecurityService {
             }
         }
 
-        return null;
+        return 0;
     }
 }

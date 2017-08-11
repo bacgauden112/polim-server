@@ -35,6 +35,7 @@ function convertType(type) {
     switch (type) {
         case 'date': return 'Date';
         case 'array': return 'any[]';
+        case 'Number': return 'number';
         default: return type;
     }
 }

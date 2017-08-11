@@ -3,10 +3,6 @@
     "loopback#favicon": {},
     "loopback-context#per-request": {
       "enableHttpContext": true
-    },
-    "loopback#token": {
-      "enableDoublecheck": false,
-      "model": "AccessToken"
     }
   },
   "initial": {
@@ -41,7 +37,7 @@
   "auth": {
     "loopback#token": {
       "params": {
-        "model": "CustomerAccessToken"
+        "model": "PolimAccessToken"
       }
     }
   },
