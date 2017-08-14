@@ -12,7 +12,7 @@
     "oldPasswords"
   ],
   "relations": {
-    "customerSetting": {
+    "customerSettings": {
       "type": "hasMany",
       "model": "CustomerSetting",
       "foreignKey": "customerId"
