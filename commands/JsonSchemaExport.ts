@@ -64,10 +64,9 @@
         }
 
         let schemaConfig = require(path.join('..', file));
+        schemaConfig.gendate = new Date();
 
         let content = render(schemaConfig);
-
-        schemaConfig.gendate = new Date();
 
         fs.writeFile(path.join(__dirname, '../docs/', schemaConfig.name + ".html"), content, function (err) {
             if (err) {
