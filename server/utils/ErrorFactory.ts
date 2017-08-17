@@ -21,6 +21,7 @@ export class ErrorFactory{
      * @param message
      * @param httpCode
      * @param code
+     * @param details
      */
     public static createError(message: string, httpCode: number, code: string, details = null) {
         let err:any = new Error(message);

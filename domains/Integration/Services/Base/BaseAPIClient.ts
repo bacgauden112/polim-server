@@ -1,3 +1,4 @@
+import {ErrorFactory} from "../../../../server/utils/ErrorFactory";
 /**
  * Created by Piggat on 8/4/2017.
  */
@@ -7,10 +8,20 @@ declare let fetch:IFetch;
  * Lớp cơ sở cho các HTTP API client
  */
 export class BaseAPIClient {
+    constructor() {
+        this._compress = false;
+    }
+
     protected _accessToken;
+    protected _timeout;
+    protected _compress;
 
     public set AccessToken(value) {
         this._accessToken = value;
+    }
+
+    public set Timeout(value) {
+        this._timeout = value;
     }
 
     public async request(url, method, data) {
@@ -32,8 +43,16 @@ export class BaseAPIClient {
         //     console.info(method, url);
         // }
 
-        let fetched = await fetch(url, config);
-        return fetched;
+        try {
+            let fetched = await fetch(url, config);
+            return fetched;
+        }
+        catch (err) {
+            if (err.name === 'FetchError' && err.type === 'request-timeout') {
+                throw ErrorFactory.createError(
+                    'Dịch vụ liên kết phản hồi chậm hoặc không có kết quả, quý khách vui lòng thử lại sau',450, 'REQUEST_TIME_OUT');
+            }
+        }
     }
 
     /**
@@ -88,9 +107,12 @@ export class BaseAPIClient {
             method,
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'User-Agent': 'Polim NodeJs Fetch'
             },
             body,
+            timeout: this._timeout || 5000,
+            compress: this._compress
         };
 
         if (authorizationKey) {
