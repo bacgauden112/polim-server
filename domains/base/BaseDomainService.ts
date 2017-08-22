@@ -17,7 +17,7 @@ export class BaseDomainService {
             this._domain = domain;
         }
     }
-    
+
     /**
      * Get singleton instance
      * @returns this
