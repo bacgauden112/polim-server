@@ -4,6 +4,7 @@ import {BaseAPIClient} from "./BaseAPIClient";
 import Customer = Models.Customer;
 import CustomerIntegration = Models.CustomerIntegration;
 import LoopBackBase = LoopBack.LoopBackBase;
+import IntegrationDomain from "../../IntegrationDomain";
 export class BaseIntegration extends BaseDomainService {
     protected _name: string;
     protected _id: number;
@@ -12,9 +13,10 @@ export class BaseIntegration extends BaseDomainService {
     protected _settings:any = {};
     protected _client;
     protected _implementation: any;
+    protected _domain:IntegrationDomain;
 
     constructor(id, name, code, secret_key) {
-        super();
+        super(new IntegrationDomain);
         this._id = id;
         this._name = name;
         this._code = code;
@@ -29,7 +31,7 @@ export class BaseIntegration extends BaseDomainService {
      * @returns {Promise<void>}
      */
     public async loadSetting() {
-        let settingModels = this._loopback.getModel('IntegrationSetting');
+        let settingModels = this._domain.IntegrationSetting;
 
         let settings:IntegrationSetting[] = await settingModels.find({
             where: {

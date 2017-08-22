@@ -4,17 +4,24 @@ import {IPurchasing} from "./Base/IPurchasing";
 import {BaseIntegration} from "./Base/BaseIntegration";
 import Integration = Models.Integration;
 import {IntegrationFactory} from "./IntegrationFactory";
+import IntegrationDomain from "../IntegrationDomain";
 /**
  * Created by Piggat on 8/10/2017.
  */
 export class IntegrationService extends BaseDomainService{
+    protected _domain:IntegrationDomain;
+
+    constructor() {
+        super(new IntegrationDomain);
+    }
+
     /**
      * Return all integrations of one customer
      * @param customerId
      * @returns {Promise<CustomerIntegration[]>}
      */
     public async getCustomerIntegrations(customerId: number):Promise<CustomerIntegration[]> {
-        let customerIntegrationModel = this._loopback.getModel('CustomerIntegration');
+        let customerIntegrationModel = this._domain.CustomerIntegration;
         return await customerIntegrationModel.find({
             where: {
                 customerId: customerId
@@ -23,12 +30,12 @@ export class IntegrationService extends BaseDomainService{
     }
 
     /**
-     *
+     * Lấy về integration theo secret
      * @param secret
      * @returns {Promise<any|Promise<any>>}
      */
     public async getIntegrationBySecret(secret:string):Promise<Integration> {
-        let integrationModel = this._loopback.getModel('Integration');
+        let integrationModel = this._domain.Integration;
         return await integrationModel.findOne({
             where: {
                 secretKey: secret
