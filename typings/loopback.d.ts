@@ -2,7 +2,7 @@
  * Created by Piggat on 06/09/2016.
  */
 declare namespace LoopBack {
-    import EventParams = DataStructures.EventParams;
+    //import EventParams = DataStructures.EventParams;
     export interface LoopBackBase {
         ():LoopBackApplication;
         version:string;
@@ -13,7 +13,7 @@ declare namespace LoopBack {
         faviconFile:string;
 
         autoAttach();
-        /** Look up a modelName class by name from all models created by loopback.createModel(). Throw an error when no such modelName exists.*/
+        /** Look up a modelName class by name from all Models created by loopback.createModel(). Throw an error when no such modelName exists.*/
         getModel(name:string):any;
         configureModel(modelCtor, config):void;
         createDataSource(name, options):void;
@@ -188,7 +188,7 @@ declare namespace LoopBack {
         disableRelation(relation, type: number, exludes: string[]): void;
         addLogEvent(remote: string, eventName: string, description: ((instance)=>string)|string, scope,commentClass, columnTitle: Object)
         addLogEvent(remote: string, eventName: string, description: ((instance)=>string)|string, scope,commentClass)
-        logEvent(model, commentClass, eventName, description, scope, params: EventParams):void;
+        //logEvent(model, commentClass, eventName, description, scope, params: EventParams):void;
         hasMetaFields():void;
 
         prototype:any;

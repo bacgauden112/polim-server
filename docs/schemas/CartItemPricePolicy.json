@@ -1,0 +1,37 @@
+{
+  "name": "CartItemPricePolicy",
+  "relations": {
+  },
+  "properties": {
+    "quantityMin" : {
+      "type": "number",
+      "required": false,
+      "description": "Số lượng sản phẩm mua tối thiểu để áp dụng mức giá này",
+      "example": 0
+    },
+    "quantityMax" : {
+      "type": "number",
+      "required": false,
+      "description": "Số lượng sản phẩm mua tối đa để áp dụng mức giá này",
+      "example": 10
+    },
+    "originPrice" : {
+      "type": "number",
+      "required": false,
+      "description": "Giá gốc của sản phẩm",
+      "example": 120
+    },
+    "salePrice" : {
+      "type": "number",
+      "required": true,
+      "description": "Giá bán của sản phẩm",
+      "example": 110
+    },
+    "originCurrency" : {
+      "type": "string",
+      "required": true,
+      "description": "Mã tiền tệ của giá sản phẩm theo ISO 4217",
+      "example": "CNY"
+    }
+  }
+}

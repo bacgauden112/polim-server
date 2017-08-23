@@ -4,6 +4,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
+server/log
 logs
 *.log
 npm-debug.log*
@@ -67,3 +68,10 @@ jspm_packages/
 server/config.json
 server/datasources.json
 server/component-config.json
+
+# mocha config
+test/mocha.opts
+test/test.ts
+
+# generated documents
+docs/*.html

@@ -1,0 +1,29 @@
+<html>
+<head>
+    <link rel="stylesheet" href="schema.css"/>
+</head>
+<body>
+<div class="object-schema">
+    <h3>Đối tượng {{name}}</h3>
+    <table cellspacing="0" cellpadding="0">
+    <tr>
+        <th>Tên</th>
+        <th>Kiểu</th>
+        <th>Bắt buộc</th>
+        <th>Mô tả</th>
+        <th class="example">Ví dụ</th>
+        {{#each properties}}
+            <tr>
+                <td>{{@key}}</td>
+                <td>{{displayType this}}</td>
+                <td>{{#if required}}Có{{else}}Không{{/if}}</td>
+                <td>{{description}}</td>
+                <td class="example">{{{json example}}}</td>
+            </tr>
+        {{/each}}
+    </table>
+
+    <div class="signature">Auto generated at {{gendate}}</div>
+</div>
+</body>
+</html>

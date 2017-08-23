@@ -1,0 +1,44 @@
+{
+  "name": "Setting",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "Setting"
+    }
+  },
+  "mixins": {},
+  "properties": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "key",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "value",
+        "dataType": "text"
+      }
+    },
+    "app": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "app",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

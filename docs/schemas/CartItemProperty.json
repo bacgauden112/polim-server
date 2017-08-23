@@ -1,0 +1,25 @@
+{
+  "name": "CartItemProperty",
+  "relations": {
+  },
+  "properties": {
+    "id" : {
+      "type": "string",
+      "required": true,
+      "description": "Id của thuộc tính trên trang nguồn hàng",
+      "example": "12"
+    },
+    "originName" : {
+      "type": "string",
+      "required": true,
+      "description": "Tên thuộc tính gốc như trên trang nguồn hàng",
+      "example": "低帮"
+    },
+    "name" : {
+      "type": "string",
+      "required": true,
+      "description": "Tên thuộc tính (có thể đã được dịch)",
+      "example": "Màu đen"
+    }
+  }
+}

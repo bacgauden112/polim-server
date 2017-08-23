@@ -1,0 +1,93 @@
+{
+  "name": "EventQueue",
+  "base": "PersistedModel",
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "EventQueue"
+    }
+  },
+  "properties": {
+    "objectType": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "objectType"
+      }
+    },
+    "objectId": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "objectId"
+      }
+    },
+    "eventName": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "eventName"
+      }
+    },
+    "params": {
+      "type": "Object",
+      "postgresql": {
+        "columnName": "params"
+      }
+    },
+    "createdAt": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "createdAt"
+      }
+    },
+    "executedAt": {
+      "type": "date",
+      "postgresql": {
+        "columnName": "executedAt"
+      }
+    },
+    "executedTimes": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "executedTimes"
+      }
+    },
+    "isSuccess": {
+      "type": "number",
+      "postgresql": {
+        "columnName": "isSuccess"
+      }
+    },
+    "errors": {
+      "type": "string",
+      "postgresql": {
+        "columnName": "errors"
+      }
+    }
+  },
+  "hidden": [],
+  "validations": [],
+  "mixins": {
+
+  },
+  "relations": {
+
+  },
+  "acls": [
+    {
+      "model": "*",
+      "accessType": "*",
+      "principalType": "USER",
+      "principalId": "1",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {},
+  "scope": {
+    "order": ["id"]
+  }
+}

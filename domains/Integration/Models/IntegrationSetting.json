@@ -1,0 +1,55 @@
+{
+  "name": "IntegrationSetting",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "IntegrationSetting"
+    }
+  },
+  "properties": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "key",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "value",
+        "dataType": "text"
+      }
+    },
+    "integrationId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "integrationId"
+      }
+    },
+    "customerId": {
+      "type": "Number",
+      "required": false,
+      "postgresql": {
+        "columnName": "customerId"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "integration": {
+      "type": "belongsTo",
+      "model": "Integration",
+      "foreignKey": "integrationId",
+      "primaryKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

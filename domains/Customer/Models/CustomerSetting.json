@@ -1,0 +1,61 @@
+{
+  "name": "CustomerSetting",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "CustomerSetting"
+    }
+  },
+  "properties": {
+    "key": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "key",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "value",
+        "dataType": "text"
+      }
+    },
+    "integrationId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "integrationId"
+      }
+    },
+    "customerId": {
+      "type": "Number",
+      "required": true,
+      "postgresql": {
+        "columnName": "customerId"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "customerId",
+      "primaryKey": "id"
+    },
+    "integration": {
+      "type": "belongsTo",
+      "model": "Integration",
+      "foreignKey": "integrationId",
+      "primaryKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

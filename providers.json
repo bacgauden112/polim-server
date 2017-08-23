@@ -1,0 +1,19 @@
+{
+  "google-login": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "1052431661582-h12703ga3r338ilb3pgp3nk07di9ii7t.apps.googleusercontent.com",
+    "clientSecret": "0KxgPSDIivqBrDELfk-CURnZ",
+    "callbackURL": "/auth/google/callback",
+    "authPath": "/auth/google",
+    "callbackPath": "/auth/google/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": [
+      "email",
+      "profile"
+    ],
+    "failureFlash": true
+  }
+}

@@ -3,14 +3,101 @@
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
+      "../domains/System/Models",
+      "../domains/Customer/Models",
+      "../domains/Integration/Models",
+      "../domains/Purchasing/Models",
       "./models"
     ],
     "mixins": [
       "loopback/common/mixins",
       "loopback/server/mixins",
-      "../node_modules/loopback-ds-computed-mixin/lib",
       "../common/mixins",
+      "../libs/mixins",
       "./mixins"
     ]
+  },
+  "PolimAccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "postgresql": {
+        "table": "ACL"
+      }
+    }
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true,
+      "postgresql": {
+        "table": "RoleMapping"
+      }
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "postgresql": {
+        "table": "Role"
+      }
+    }
+  },
+  "Setting": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "appSettings": true,
+          "systemSettings": true
+        }
+      }
+    }
+  },
+  "Customer": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true,
+          "login": true,
+          "logout": true
+        }
+      }
+    }
+  },
+  "EventQueue": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Integration": {
+    "dataSource": "db",
+    "public": false
+  },
+  "CustomerIntegration": {
+    "dataSource": "db",
+    "public": false
+  },
+  "IntegrationSetting": {
+    "dataSource": "db",
+    "public": false
+  },
+  "CustomerSetting": {
+    "dataSource": "db",
+    "public": false
+  },
+  "PurchaseOrder": {
+    "dataSource": null,
+    "public": true
   }
 }
