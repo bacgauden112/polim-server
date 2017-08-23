@@ -114,6 +114,24 @@
       "required": false,
       "description": "Số lượng hàng tồn của sản phẩm này",
       "example": 100
+    },
+    "seller": {
+      "type": "Seller",
+      "required": true,
+      "description": "Người bán",
+      "example": "123"
+    },
+    "modifiedAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được sửa của CartItem",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được tạo của CartItem",
+      "example": "2017-08-23T09:34:23.000X"
     }
   }
 }

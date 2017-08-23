@@ -15,6 +15,8 @@
         return string.split(',').join(', ');
     });
 
+    let jsTypes = ['string', 'number', 'boolean', 'Date', 'String', 'Number', 'Boolean'];
+
     Handlebars.registerHelper('displayType', function(property) {
         if (property.type == 'array' || property.type == 'Array') {
             let type = property.items.type.toLowerCase;
@@ -27,8 +29,11 @@
                     Handlebars.SafeString(`<a href="${property.items.type}.html">${property.items.type}</a>[]`);
             }
         }
-        else {
+        else if (jsTypes.indexOf(property.type) > 0 ) {
             return property.type;
+        }
+        else {
+            return new Handlebars.SafeString(`<a href="${property.type}.html">${property.type}</a>`)
         }
     });
 

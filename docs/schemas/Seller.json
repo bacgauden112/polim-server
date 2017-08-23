@@ -1,0 +1,52 @@
+{
+  "name": "Seller",
+  "relations": {
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true,
+      "description": "Id của người bán trên site nguồn hàng",
+      "example": "123"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Tên của người bán trên site nguồn hàng",
+      "example": "heelShop"
+    },
+    "source": {
+      "type": "string",
+      "required": true,
+      "description": "Site nguồn hàng",
+      "example": "taobao.com"
+    },
+    "wangwang": {
+      "type": "string",
+      "required": false,
+      "description": "Tài khoản wangwang của người bán trên site nguồn hàng",
+      "example": "低帮"
+    },
+    "modifiedAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được sửa của CartItem",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được tạo của CartItem",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "items": {
+      "type": "Array",
+      "required": false,
+      "description": "Danh sách các sản phẩm của shop này",
+      "example": "Please view CartItem",
+      "items": {
+        "type": "CartItem"
+      }
+    }
+  }
+}
