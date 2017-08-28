@@ -99,5 +99,17 @@
   "PurchaseOrder": {
     "dataSource": null,
     "public": true
+  },
+  "WebViewLog": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,45 @@
+{
+  "name": "WebViewLog",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "WebViewLog"
+    }
+  },
+  "properties": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "code",
+        "dataType": "varchar",
+        "dataLength": 30
+      }
+    },
+    "trace": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "trace"
+      }
+    },
+    "message": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "message"
+      }
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "url",
+        "dataType": "varchar",
+        "dataLength": 255
+      }
+    }
+  }
+}

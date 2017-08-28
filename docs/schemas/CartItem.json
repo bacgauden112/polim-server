@@ -28,10 +28,16 @@
       "example": "https://m.taobao.com/...2300000200232057058"
     },
     "mainImage": {
-      "type": "string",
+      "type": "Array",
       "required": true,
       "description": "Hình ảnh đại diện chung của sản phẩm",
-      "example": "https://img.alicdn.com/...FXX_300x300.jpg"
+      "example": [
+        "https://img.alicdn.com/...FXX_300x300.jpg",
+        "https://img.alicdn.com/...FXX_450x450.jpg"
+      ],
+      "items": {
+        "type": "string"
+      }
     },
     "variantImage": {
       "type": "string",
@@ -78,7 +84,7 @@
     },
     "note" : {
       "type": "string",
-      "required": true,
+      "required": false,
       "description": "Ghi chú cho sản phẩm",
       "example": "Nếu thiếu hàng phải gọi điện lại cho shop trước khi mua"
     },

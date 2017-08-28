@@ -21,6 +21,12 @@
       "description": "Site nguồn hàng",
       "example": "taobao.com"
     },
+    "originUrl": {
+      "type": "string",
+      "required": true,
+      "description": "Đường dẫn đến thông tin shop trên site nguồn hàng",
+      "example": "https://someshop.taobao.com"
+    },
     "wangwang": {
       "type": "string",
       "required": false,

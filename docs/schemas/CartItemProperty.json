@@ -20,6 +20,18 @@
       "required": true,
       "description": "Tên thuộc tính (có thể đã được dịch)",
       "example": "Màu đen"
+    },
+    "originTitle": {
+      "type": "string",
+      "required": true,
+      "description": "Tên loại thuộc tính",
+      "example": "Màu sắc"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": "Tên loại thuộc tính (có thể đã được dịch)",
+      "example": "Màu sắc"
     }
   }
 }
