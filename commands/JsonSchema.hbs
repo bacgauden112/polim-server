@@ -17,7 +17,7 @@
                 <td>{{@key}}</td>
                 <td>{{displayType this}}</td>
                 <td>{{#if required}}Có{{else}}Không{{/if}}</td>
-                <td>{{description}}</td>
+                <td>{{linkify description}}</td>
                 <td class="example">{{{json example}}}</td>
             </tr>
         {{/each}}

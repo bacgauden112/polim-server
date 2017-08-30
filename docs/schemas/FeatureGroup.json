@@ -1,0 +1,31 @@
+{
+  "name": "FeatureGroup",
+  "relations": {
+  },
+  "properties": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "description": "Mã nhóm",
+      "example": "INTERNATIONAL"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Tên nhóm",
+      "example": "Vận chuyển quốc tế"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "required": false,
+      "description": "Có bắt buộc phải chọn một tính chất của nhóm này hay không (ví dụ luôn phải chọn một dịch vụ vận chuyển quốc tế), mặc định false",
+      "example": true
+    },
+    "isMultiChoice": {
+      "type": "boolean",
+      "required": false,
+      "description": "Có cho phép chọn nhiều tính chất trong cùng nhóm hay không. Nếu không (false) tức là trong nhóm này chỉ được chọn một. Mặc định false",
+      "example": false
+    }
+  }
+}

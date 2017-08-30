@@ -1,0 +1,37 @@
+{
+  "name": "ServiceFee",
+  "relations": {
+  },
+  "properties": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "description": "Mã dịch vụ",
+      "example": "CHECKING"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Tên dịch vụ",
+      "example": "Kiểm hàng"
+    },
+    "rawAmount": {
+      "type": "number",
+      "required": true,
+      "description": "Phí dịch vụ gốc (mức phí không áp dụng bất kỳ chính sách ưu đãi nào)",
+      "example": 20000
+    },
+    "amount": {
+      "type": "number",
+      "required": true,
+      "description": "Tổng phí cho dịch vụ này (mức phí thực tế sau khi áp dụng ưu đãi nếu có)",
+      "example": 19000
+    },
+    "currency": {
+      "type": "string",
+      "required": true,
+      "description": "Mã tiền tệ của phí dịch vụ theo ISO 4217",
+      "example": "VND"
+    }
+  }
+}

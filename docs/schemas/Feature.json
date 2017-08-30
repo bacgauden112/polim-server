@@ -1,0 +1,58 @@
+{
+  "name": "Feature",
+  "relations": {
+  },
+  "properties": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "description": "Mã tính chất/dịch vụ",
+      "example": "CHECKING"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Tên tính chất/dịch vụ",
+      "example": "Kiểm hàng"
+    },
+    "icon": {
+      "type": "string",
+      "required": false,
+      "description": "Đường dẫn tới file icon của tính chất (nếu có), có thể sử dụng cho việc hiển thị trên App",
+      "example": "http://seudo.vn/seudo.ico"
+    },
+    "enabled": {
+      "type": "boolean",
+      "required": true,
+      "description": "Có cho phép chọn tính chất này hay không",
+      "example": true
+    },
+    "pending": {
+      "type": "boolean",
+      "required": false,
+      "description": "Có yêu cầu phải chờ duyệt hay không, mặc định false",
+      "example": false
+    },
+    "default": {
+      "type": "boolean",
+      "required": false,
+      "description": "Có mặc định chọn khi tạo đơn hay không, mặc định là false",
+      "example": true
+    },
+    "groupCode": {
+      "type": "string",
+      "required": false,
+      "description": "Tính chất này thuộc nhóm tính chất nào, xem [FeatureGroup]",
+      "example": null
+    },
+    "requires": {
+      "type": "Array",
+      "required": false,
+      "description": "Để chọn được tính chất này, có bắt buộc phải chọn một trong các tính chất khác hay không. Ví dụ: phải chọn chuyển phát nhanh thì mới chọn được chuyển thẳng.",
+      "example": ["BUYING"],
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

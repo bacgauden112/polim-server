@@ -29,12 +29,17 @@
                     Handlebars.SafeString(`<a href="${property.items.type}.html">${property.items.type}</a>[]`);
             }
         }
-        else if (jsTypes.indexOf(property.type) > 0 ) {
+        else if (jsTypes.indexOf(property.type) >= 0 ) {
             return property.type;
         }
         else {
             return new Handlebars.SafeString(`<a href="${property.type}.html">${property.type}</a>`)
         }
+    });
+
+    Handlebars.registerHelper('linkify', function(string) {
+        let result = string.replace(/\[(.*?)\]/g, "<a href='$1.html'>$1</a>");
+        return new Handlebars.SafeString(result)
     });
 
     let template = path.join(__dirname, 'JsonSchema.hbs');
