@@ -13,6 +13,12 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         GET_FEATURE_ORDER_API: 'GET_FEATURE_ORDER_API'
     };
 
+    /**
+     * gửi request lấy tỉ giá
+     * @param customerId
+     * @param appliedTime
+     * @returns {Promise<any>}
+     */
     public async getExchange(customerId: number, appliedTime = new Date()): Promise<IExchangeRate> {
         let client: BaseAPIClient = await this.createClient(customerId);
 
@@ -54,6 +60,12 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         }
     }
 
+    /**
+     * gửi request lấy tính chất đơn hàng
+     * @param customerId
+     * @param appliedTime
+     * @returns {Promise<any>}
+     */
     public async getOrderFeature(customerId: number, appliedTime = new Date()): Promise<IOrderFeature> {
         let client: BaseAPIClient = await this.createClient(customerId);
 

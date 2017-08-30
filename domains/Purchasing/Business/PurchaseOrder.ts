@@ -23,6 +23,12 @@ export class PurchaseOrder {
         return await purchasingService.getExchange(customerId, appliedTime);
     }
 
+    /**
+     * Lấy về thông tin đơn hàng
+     * @param ctx
+     * @param appliedTime
+     * @returns {Promise<IOrderFeature>}
+     */
     public static async getOrderFeature(ctx, appliedTime) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
 
