@@ -22,4 +22,16 @@ export class PurchaseOrder {
 
         return await purchasingService.getExchange(customerId, appliedTime);
     }
+
+    public static async getOrderFeature(ctx, appliedTime) {
+        let customerId = SecurityService.getCurrentCustomerId(ctx);
+
+        let purchasingService = await IntegrationService.getPurchasingService(customerId);
+        if (!purchasingService) {
+            throw ErrorFactory
+                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+        }
+
+        return await purchasingService.getOrderFeature(customerId, appliedTime);
+    }
 }
