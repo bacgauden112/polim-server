@@ -89,7 +89,7 @@ export interface IFeature {
     /**
      * Tính chất này thuộc nhóm nào
      */
-    groupCode: string,
+    groupcode: string,
     /**
      * Để chọn được tính chất này, có bắt buộc phải chọn một trong các tính chất khác hay không.
      * Ví dụ: phải chọn chuyển phát nhanh thì mới chọn được chuyển thẳng.

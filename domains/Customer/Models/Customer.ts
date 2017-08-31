@@ -1,6 +1,7 @@
 import {CustomerHook} from '../Business/CustomerHook';
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
 import {RelationType} from "../../Common/Constants";
+import {Customer as CustomerBussiness} from "../Business/Customer";
 
 export = function (Customer) {
     LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
@@ -30,4 +31,28 @@ export = function (Customer) {
     Customer.beforeRemote('**', function(ctx, model, next) {
         next();
     })
+
+    /**
+     * api lấy thông tin người dùng
+     * @param token
+     * @param next
+     */
+    Customer.me = function(ctx, next) {
+        LoopBackUtils.processPromiseCallback(CustomerBussiness.getCustomer(Customer, ctx),next);
+    };
+
+    Customer.remoteMethod(
+        'me',
+        {
+            accepts: [
+                // {arg: 'token', type: 'string', description: "Access token", required: true}
+                {arg: 'context', type: 'Object', http: function(ctx) {
+                    return ctx;
+                }}
+            ],
+            returns: {arg: 'profile', type: 'Object', root: true},
+            http: {path: '/me', verb: 'get'},
+            description: "Lấy thông tin người dùng"
+        }
+    );
 }

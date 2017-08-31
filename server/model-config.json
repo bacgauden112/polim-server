@@ -71,7 +71,8 @@
           "*": false,
           "create": true,
           "login": true,
-          "logout": true
+          "logout": true,
+          "me": true
         }
       }
     }
