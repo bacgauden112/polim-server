@@ -22,4 +22,21 @@ export = function(Model) {
             description: "Lấy tỉ giá áp dụng cho một thời điểm (tạm thời chỉ có CNY sang VND)"
         }
     );
+
+    Model.getOrderFeature = function(ctx, appliedTime, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.getOrderFeature(ctx, appliedTime), next);
+    };
+
+    Model.remoteMethod(
+        'getOrderFeature',
+        {
+            accepts: [{arg: 'context', type: 'Object', http: function(ctx) {
+                return ctx;
+            }}, {arg: 'appliedTime', type:'Date', description: "Thời gian áp dụng chính sách này"}
+            ],
+            returns: {arg: 'orderFeature', type: 'Object', root: true},
+            http: {path: '/orderFeature', verb: 'get'},
+            description: "Lấy thông tin các tính chất đơn"
+        }
+    );
 }
