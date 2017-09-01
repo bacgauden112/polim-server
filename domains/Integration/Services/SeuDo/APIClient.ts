@@ -57,7 +57,7 @@ export class APIClient extends BaseAPIClient {
             return {
                 status: data.error ? 500 : 200,
                 json: function() {
-                    return data;
+                    return data.data;
                 }
             };
         }

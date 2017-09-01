@@ -14,6 +14,7 @@ export class BaseIntegration extends BaseDomainService {
     protected _client;
     protected _implementation: any;
     protected _domain:IntegrationDomain;
+    protected _parent:BaseIntegration;
 
     constructor(id, name, code, secret_key) {
         super(new IntegrationDomain);
@@ -46,6 +47,15 @@ export class BaseIntegration extends BaseDomainService {
     }
 
     /**
+     * Set parent Integration
+     * @param value
+     * @constructor
+     */
+    public set Parent(value) {
+        this._parent = value;
+    }
+
+    /**
      * Lấy setting về
      * @param setting
      * @param defaultValue
@@ -62,8 +72,11 @@ export class BaseIntegration extends BaseDomainService {
      * Create API client object
      */
     protected async createClient(customerId: number): Promise<BaseAPIClient> {
+        if (this._parent) {
+            return this._parent.createClient(customerId);
+        }
         let accessToken = await this.getAccessToken(customerId);
-        return this.createClientWithAccessToken(accessToken);
+        return await this.createClientWithAccessToken(accessToken);
     }
 
     /**
@@ -72,6 +85,9 @@ export class BaseIntegration extends BaseDomainService {
      * @returns {Promise<BaseAPIClient>}
      */
     protected async createClientWithAccessToken(accessToken:string):Promise<BaseAPIClient> {
+        if (this._parent) {
+            return this._parent.createClientWithAccessToken(accessToken);
+        }
         let client = new BaseAPIClient();
         client.AccessToken = accessToken;
         return client;
@@ -83,6 +99,9 @@ export class BaseIntegration extends BaseDomainService {
      * @returns {Promise<string>}
      */
     protected async getAccessToken(customerId:number):Promise<string> {
+        if (this._parent) {
+            return this._parent.getAccessToken(customerId);
+        }
         let loopback:LoopBackBase = require('loopback');
         let customerIntegrationModel = loopback.getModel('CustomerIntegration');
 
@@ -109,10 +128,11 @@ export class BaseIntegration extends BaseDomainService {
      */
     public addImplementation(name:string, desiredClassObject: BaseIntegration) {
         //overwrite desired base function with my function
-        desiredClassObject.createClient = this.createClient;
-        desiredClassObject.createClientWithAccessToken = this.createClientWithAccessToken;
-        desiredClassObject.getAccessToken = this.getAccessToken;
+        //desiredClassObject.createClientWithAccessToken = this.createClientWithAccessToken;
+        //desiredClassObject.createClient = this.createClient;
+        //desiredClassObject.getAccessToken = this.getAccessToken;
         desiredClassObject._settings = this._settings;
+        desiredClassObject._parent = this;
 
         this._implementation[name] = desiredClassObject;
     }
