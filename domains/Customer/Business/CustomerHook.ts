@@ -103,7 +103,7 @@ export class CustomerHook {
     }
 
     /**
-     * Before hook chuyển các ký tự hoa trong username khi đăng ký thành chữ thường.
+     * Before hook chuyển các ký tự hoa trong username khi request thành chữ thường.
      * @param ctx
      * @param user
      * @param next
@@ -111,6 +111,19 @@ export class CustomerHook {
     public static lowerCaseUserName(ctx, user, next) {
         if(ctx.req.body.hasOwnProperty('username')) {
             ctx.req.body.username = ctx.req.body.username.toLowerCase();
+        }
+        next();
+    }
+
+    /**
+     * Before hook chuyển các ký tự hoa trong email khi request thành chữ thường.
+     * @param ctx
+     * @param user
+     * @param next
+     */
+    public static lowerCaseEmail(ctx, user, next) {
+        if(ctx.req.body.hasOwnProperty('email')) {
+            ctx.req.body.email = ctx.req.body.email.toLowerCase();
         }
         next();
     }
