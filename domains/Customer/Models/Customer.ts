@@ -24,8 +24,20 @@ export = function (Customer) {
         CustomerHook.lowerCaseUserName(ctx, user, next);
     });
 
+    Customer.beforeRemote('create', function (ctx, user, next) {
+        CustomerHook.lowerCaseEmail(ctx, user, next);
+    });
+
     Customer.afterRemote('create', function (ctx, user, next) {
         CustomerHook.mappingCustomer(ctx, user, next);
+    });
+
+    Customer.beforeRemote('login', function (ctx, user, next) {
+        CustomerHook.lowerCaseUserName(ctx, user, next);
+    });
+
+    Customer.beforeRemote('login', function (ctx, user, next) {
+        CustomerHook.lowerCaseEmail(ctx, user, next);
     });
 
     Customer.beforeRemote('**', function(ctx, model, next) {
