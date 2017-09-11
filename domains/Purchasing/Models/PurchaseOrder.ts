@@ -39,12 +39,12 @@ export = function (Model) {
      * @param features
      * @param next
      */
-    Model.getCost = function (ctx, datas, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.getCost(ctx, datas), next);
+    Model.getFee = function (ctx, datas, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.getFee(ctx, datas), next);
     };
 
     Model.remoteMethod(
-        'getCost',
+        'getFee',
         {
             accepts: [
                 {
@@ -95,8 +95,39 @@ export = function (Model) {
                     }
                 },
             ],
-            returns: {arg: 'cost', type: 'Object', root: true, default: '{cost: ""}'},
-            http: {path: '/cost', verb: 'post'},
+            returns: {
+                arg: 'fee',
+                type: 'Object',
+                root: true,
+                default: `{
+"total": "number",
+"currency": "string",
+"serviceFees": [
+    {
+        "code": "string",
+        "name": "string",
+        "rawAmount": "number",
+        "amount": "number",
+        "currency": "string"
+    },
+    {
+        "code": "string",
+        "name": "string",
+        "rawAmount": "number",
+        "amount": "number",
+        "currency": "string"
+    },
+    {
+        "code": "string",
+        "name": "string",
+        "rawAmount": "number",
+        "amount": "number",
+        "currency": "string"
+    }
+]
+}`
+            },
+            http: {path: '/fee', verb: 'post'},
             description: "Từ thông tin sản phẩm & các tính chất đơn gửi lên trả về chi tiết các phí tạm tính khi tạo đơn."
         }
     );
