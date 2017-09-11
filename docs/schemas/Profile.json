@@ -1,0 +1,67 @@
+{
+  "name": "Profile",
+  "relations": {
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "required": true,
+      "description": "Địa chỉ email của tài khoản",
+      "example": "nguyenxuankien@shippo.vn"
+    },
+    "fullName": {
+      "type": "string",
+      "required": true,
+      "description": "Tên đầy đủ của tài khoản",
+      "example": "Nguyễn Xuân Kiên"
+    },
+    "firstName": {
+      "type": "string",
+      "required": false,
+      "description": "Tên của chủ tài khoản",
+      "example": "Xuân Kiên"
+    },
+    "lastName": {
+      "type": "string",
+      "required": false,
+      "description": "Họ của chủ tài khoản",
+      "example": "Nguyễn"
+    },
+    "mobile": {
+      "type": "string",
+      "required": true,
+      "description": "Số điện thoại người liên hệ khách hàng (số điện thoại nhận SMS đối với Sếu Đỏ)",
+      "example": "091234567890"
+    },
+    "gender": {
+      "type": "number",
+      "required": false,
+      "description": "Giới tính: null chưa có | 0 nữ | 1 nam | 2 khác",
+      "example": 1
+    },
+    "avatar": {
+      "type": "string",
+      "required": false,
+      "description": "Đường dẫn ảnh tới Avatar của tài khoản",
+      "example": "http://i0.kym-cdn.com/photos/images/masonry/001/271/056/1c3.jpg"
+    },
+    "balance": {
+      "type": "number",
+      "required": true,
+      "description": "Số dư tài khoản, là số dương nếu như dịch vụ đang giữ tiền của khách, số âm nếu khách đang nợ",
+      "example": -1000000
+    },
+    "type": {
+      "type": "string",
+      "required": true,
+      "description": "Loại tài khoản của khách (cấp VIP đối với Sếu Đỏ)",
+      "example": "VIP10"
+    },
+    "id": {
+      "type": "number",
+      "required": true,
+      "description": "Id của khách hàng trên Sếu Đỏ",
+      "example": 22388
+    }
+  }
+}

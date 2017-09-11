@@ -1,0 +1,43 @@
+{
+  "name": "Address",
+  "relations": {
+  },
+  "properties": {
+    "streetAddress": {
+      "type": "string",
+      "required": true,
+      "description": "Địa chỉ chi tiết (số nhà, đường phố, phường xã)",
+      "example": "Số 1A tổ 2 Giáp Nhất, phường Nhân Chính"
+    },
+    "districtId": {
+      "type": "string",
+      "required": true,
+      "description": "Mã quận huyện (Tải file excel <a href='province_district_code.xlsx'>tại đây</a>)",
+      "example": "VN.HI.TX"
+    },
+    "provinceId": {
+      "type": "string",
+      "required": true,
+      "description": "Mã tỉnh/thành phố (Tải file excel <a href='province_district_code.xlsx'>tại đây</a>)",
+      "example": "VN.HI"
+    },
+    "contactName": {
+      "type": "string",
+      "required": true,
+      "description": "Tên người liên hệ nhận hàng",
+      "example": "Nguyễn Xuân Kiên"
+    },
+    "contactPhone": {
+      "type": "string",
+      "required": true,
+      "description": "Số điện thoại người liên hệ nhận hàng",
+      "example": "091234567890"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "required": true,
+      "description": "Có phải là địa chỉ mặc định hay không",
+      "example": true
+    }
+  }
+}

@@ -11,6 +11,9 @@
     let Handlebars = require("handlebars");
 
     Handlebars.registerHelper('json', function(context) {
+        if (!context) {
+            return '';
+        }
         let string = JSON.stringify(context);
         return string.split(',').join(', ');
     });
