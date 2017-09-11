@@ -7,6 +7,7 @@ import {BaseAPIClient} from "../Base/BaseAPIClient";
  * Created by Piggat on 8/4/2017.
  */
 export class SeuDoService extends BaseIntegration {
+
     constructor(id, name, code, secret_key) {
         super(id, name, code, secret_key);
     }
