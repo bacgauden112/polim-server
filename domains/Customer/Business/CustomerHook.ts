@@ -65,6 +65,13 @@ export class CustomerHook {
         next();
     }
 
+    /**
+     * Before hook kiểm tra access token bên tích hợp đã có trong header chưa.
+     * @param ctx
+     * @param user
+     * @param next
+     * @returns {Promise<void>}
+     */
     public static async checkAccessToken(ctx, user, next) {
         let headers = ctx.req.headers;
         if (!headers.hasOwnProperty('access-token')) {
@@ -111,6 +118,25 @@ export class CustomerHook {
     public static lowerCaseUserName(ctx, user, next) {
         if(ctx.req.body.hasOwnProperty('username')) {
             ctx.req.body.username = ctx.req.body.username.toLowerCase();
+        }
+        next();
+    }
+
+    /**
+     * Before hook kiểm tra username có là định dạng email không.
+     * @param ctx
+     * @param user
+     * @param next
+     */
+    public static checkUserNameBeforeRegister(ctx, user, next) {
+        console.log("ctx.args.data.username");
+        console.log(ctx.args.data.username);
+
+        let username = ctx.args.data.username;
+
+        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
+            next(ErrorFactory.createError('Không cho phép đăng ký username dạng email', 400, 'INVALID_USERNAME'));
+            return;
         }
         next();
     }
