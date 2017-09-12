@@ -21,6 +21,10 @@ export = function (Customer) {
     });
 
     Customer.beforeRemote('create', function (ctx, user, next) {
+        CustomerHook.checkUserNameBeforeRegister(ctx, user, next);
+    });
+
+    Customer.beforeRemote('create', function (ctx, user, next) {
         CustomerHook.lowerCaseUserName(ctx, user, next);
     });
 

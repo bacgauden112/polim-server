@@ -48,23 +48,17 @@ export class CustomerHook {
         }
         let externalId = headers['external-id'];
 
-        /*let integrationModel = app.models.Integration;
-        let integrationObj = await integrationModel.findOne({
-            where: {
-                externalId: externalId
-            }
-        });
-        if (integrationObj != null) {
-            next(ErrorFactory.createError('Đã tồn tại id tài khoản dịch vụ', '400', 'INVALID_EXTERNAL_ID'));
-            return;
-        } else {
-            ctx.externalId = integrationObj.externalId;
-            next();
-        }*/
         ctx.externalId = externalId;
         next();
     }
 
+    /**
+     * Before hook kiểm tra access token bên tích hợp đã có trong header chưa.
+     * @param ctx
+     * @param user
+     * @param next
+     * @returns {Promise<void>}
+     */
     public static async checkAccessToken(ctx, user, next) {
         let headers = ctx.req.headers;
         if (!headers.hasOwnProperty('access-token')) {
@@ -124,6 +118,25 @@ export class CustomerHook {
     public static lowerCaseEmail(ctx, user, next) {
         if(ctx.req.body.hasOwnProperty('email')) {
             ctx.req.body.email = ctx.req.body.email.toLowerCase();
+        }
+        next();
+    }
+
+    /**
+     * Before hook kiểm tra username có là định dạng email không.
+     * @param ctx
+     * @param user
+     * @param next
+     */
+    public static checkUserNameBeforeRegister(ctx, user, next) {
+        console.log("ctx.args.data.username");
+        console.log(ctx.args.data.username);
+
+        let username = ctx.args.data.username;
+
+        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
+            next(ErrorFactory.createError('Không cho phép đăng ký username dạng email', 400, 'INVALID_USERNAME'));
+            return;
         }
         next();
     }
