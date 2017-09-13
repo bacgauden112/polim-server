@@ -28,7 +28,7 @@ export class Logger {
     }
 
     public static getDirname() {
-        return (<any>global).dirname || __dirname;
+        return (<any>global).dirname || process.cwd();
     }
 
     public static factory(channel: any, level = 'info'):Logger {
