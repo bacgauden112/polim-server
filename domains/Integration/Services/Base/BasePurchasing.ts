@@ -1,4 +1,4 @@
-import {IPurchasing, IExchangeRate, ICost, IDatas} from "./IPurchasing";
+import {IPurchasing, IExchangeRate, IFee} from "./IPurchasing";
 import {BaseIntegration} from "./BaseIntegration";
 import {BaseAPIClient, HttpMethod} from "./BaseAPIClient";
 import {Logger} from "../../../../libs/Logger";
@@ -11,7 +11,7 @@ import {IntegrationAPIError} from "./IntegrationErrors";
 export class BasePurchasing extends BaseIntegration implements IPurchasing {
     protected static SETTING_KEY = {
         GET_EXCHANGE_API: 'GET_EXCHANGE_API',
-        GET_COST_API: 'GET_COST_API'
+        GET_FEE_API: 'GET_FEE_API'
     };
 
     public async getExchange(customerId: number, appliedTime = new Date()): Promise<IExchangeRate> {
@@ -55,7 +55,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         }
     }
 
-    public async getCost(customerId: number, datas): Promise<ICost> {
+    public async getFee(customerId: number, datas): Promise<IFee> {
         let client:BaseAPIClient = await this.createClient(customerId);
 
         let data:any = {};
@@ -63,7 +63,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data = datas;
         }
 
-        let url = this.getSetting(BasePurchasing.SETTING_KEY.GET_COST_API);
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.GET_FEE_API);
 
         if (!url) {
             throw ErrorFactory

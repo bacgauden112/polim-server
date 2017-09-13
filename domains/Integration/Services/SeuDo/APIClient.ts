@@ -21,6 +21,9 @@ export class APIClient extends BaseAPIClient {
      */
     protected getQueryString(data):string {
         let query = super.getQueryString(data);
+        if(data == 'x') {
+            query = `&token=${this._accessToken}`;
+        }
         if (query == '') {
             query = `?token=${this._accessToken}`;
         }

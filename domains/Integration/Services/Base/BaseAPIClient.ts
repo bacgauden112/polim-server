@@ -32,7 +32,7 @@ export class BaseAPIClient {
         let config;
         if (method != 'GET') {
             config = this.getRequestConfig(method, data);
-            url = url + this.getQueryString(null);
+            url = url + this.getQueryString('x');
         }
         else {
             config = this.getRequestConfig(method, data);

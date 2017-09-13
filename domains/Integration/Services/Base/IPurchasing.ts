@@ -1,7 +1,7 @@
 export interface IPurchasing {
     getExchange(customerId: number): Promise<IExchangeRate>;
     getExchange(customerId: number, appliedTime: Date): Promise<IExchangeRate>;
-    getCost(customerId: number, datas: IDatas): Promise<ICost>;
+    getFee(customerId: number, datas: IDatas): Promise<IFee>;
 }
 
 export interface IExchangeRate {
@@ -28,7 +28,7 @@ export interface IExchangeRate {
 }
 
 
-export interface ICost {
+export interface IFee {
     total: number
     currency: string
     serviceFees: IServiceFee
