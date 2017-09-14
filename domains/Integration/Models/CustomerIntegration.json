@@ -38,6 +38,15 @@
         "dataType": "varchar",
         "dataLength": 255
       }
+    },
+    "username": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "username",
+        "dataType": "varchar",
+        "dataLength": 255
+      }
     }
   },
   "validations": [],

@@ -40,6 +40,9 @@ export class LoopBackUtils {
                     RelationMethod.deleteRelationObject, RelationMethod.findAllRelationObject, RelationMethod.countRelationObject
                 ];
                 break;
+            case RelationType.belongsTo:
+                includes = [RelationMethod.findAllRelationObject];
+                break;
         }
 
         for (let method of includes) {

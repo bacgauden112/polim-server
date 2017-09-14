@@ -25,5 +25,6 @@ export const RelationMethod = {
  */
 export enum RelationType {
     hasManyThrough,
-    hasMany
+    hasMany,
+    belongsTo
 }
