@@ -15,7 +15,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             rate: 3000,
             baseCurrency: 'CNY',
             targetCurrency: 'VND'
-        }
+        };
     }
 
     async getOrderFeature(customerId, appliedTime = new Date()): Promise<IOrderFeature> {
@@ -24,7 +24,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             name: "Vận chuyển quốc tế",
             isRequired: true,
             isMultiChoice: true
-        }
+        };
 
         let features1: IFeature = {
             code: "BUYING",
@@ -35,7 +35,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: true,
             groupcode: null,
             requires: null
-        }
+        };
         let features2: IFeature = {
             code: "CHECKING",
             name: "Kiểm hàng",
@@ -45,7 +45,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: true,
             groupcode: null,
             requires: null
-        }
+        };
         let features3: IFeature = {
             code: "WOOD_CRATING",
             name: "Đóng gỗ",
@@ -55,7 +55,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: false,
             groupcode: null,
             requires: null
-        }
+        };
         let features4: IFeature = {
             code: "SHIPPING_CHINA_VIETNAM",
             name: "Vận chuyển thường",
@@ -65,7 +65,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: true,
             groupcode: "INTERNATIONAL",
             requires: null
-        }
+        };
         let features5: IFeature = {
             code: "EXPRESS_CHINA_VIETNAM",
             name: "Chuyển phát nhanh",
@@ -75,7 +75,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: false,
             groupcode: "INTERNATIONAL",
             requires: null
-        }
+        };
         let features6: IFeature = {
             code: "SAVING_TRANSPORT",
             name: "Chuyển phát tiết kiệm",
@@ -85,7 +85,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: false,
             groupcode: "INTERNATIONAL",
             requires: null
-        }
+        };
         let features7: IFeature = {
             code: "APPROVED_TRANSPORT_STRAIGHT",
             name: "Chuyển thẳng nhà khách",
@@ -95,7 +95,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             default: false,
             groupcode: null,
             requires: null
-        }
+        };
 
         return {
             groups: [groups],
@@ -103,7 +103,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
                 features1,
                 features2
             ]
-        }
+        };
     }
 
 
@@ -135,7 +135,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             total: 53760000,
             currency: "VND",
             serviceFees: serviceFees
-        }
+        };
     }
     //endregion
 }
