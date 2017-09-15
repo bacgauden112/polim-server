@@ -44,15 +44,24 @@ export class APIClient extends BaseAPIClient {
         let response = await super.request(url, method, data);
         if (response.status != 200) {
             let logger = Logger.factory('integration');
+            let responseText = await response.text();
             let context = {
                 request: {
                     url: url,
                     data: data
                 },
-                response: await response.text()
+                response: responseText
             };
-            logger.error(new Error("Error response from server"), context)
-            return response;
+            logger.error(new Error("Error response from server"), context);
+            return {
+                status: response.status,
+                json: function() {
+                    return null;
+                },
+                text: function() {
+                    return responseText;
+                }
+            };
         }
         else {
             data = await response.json();

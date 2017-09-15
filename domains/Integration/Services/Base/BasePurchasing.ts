@@ -3,6 +3,7 @@ import {BaseIntegration} from "./BaseIntegration";
 import {BaseAPIClient, HttpMethod} from "./BaseAPIClient";
 import {Logger} from "../../../../libs/Logger";
 import {ErrorFactory} from "../../../../server/utils/ErrorFactory";
+import {IntegrationAPIError} from "./IntegrationErrors";
 /**
  * Created by Piggat on 8/9/2017.
  * Class chứa các hàm cơ sở sẽ được add thêm vào BaseIntegration để phục vụ dịch vụ nhập hàng
@@ -101,7 +102,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 },
                 response: await response.text()
             };
-            logger.error(new Error("Error response from server"), context)
+            logger.error(new Error("Error response from server"), context);
+            throw IntegrationAPIError;
         }
         else {
             return await response.json();
