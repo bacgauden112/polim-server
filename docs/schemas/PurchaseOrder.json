@@ -1,0 +1,52 @@
+{
+  "name": "PurchaseOrder",
+  "relations": {
+  },
+  "properties": {
+    "seller": {
+      "type": "Seller",
+      "required": true,
+      "description": "Đối tượng người bán của đơn này",
+      "example": "Seller"
+    },
+    "modifiedAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được sửa lần cuối của đơn (có thể có từ trong giỏ hàng)",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được tạo của đơn (có thể có khi đang ở trong giỏ hàng với mục đích sắp xếp)",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "items": {
+      "type": "Array",
+      "required": false,
+      "description": "Danh sách các sản phẩm của shop này",
+      "example": "Please view CartItem",
+      "items": {
+        "type": "CartItem"
+      }
+    },
+    "features": {
+      "type": "Array",
+      "required": false,
+      "description": "Danh sách các tính chất của đơn",
+      "example": "Please view Feature",
+      "items": {
+        "type": "Feature"
+      }
+    },
+    "serviceFees": {
+      "type": "Array",
+      "required": false,
+      "description": "Danh sách các phí dịch vụ trên đơn",
+      "example": "Please view ServiceFee",
+      "items": {
+        "type": "ServiceFee"
+      }
+    }
+  }
+}

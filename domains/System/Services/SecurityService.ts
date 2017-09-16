@@ -17,4 +17,8 @@ export class SecurityService {
 
         return 0;
     }
+
+    public static getCurrentUserId(httpContext): number {
+        return 0;
+    }
 }
