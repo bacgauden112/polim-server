@@ -101,7 +101,12 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             groups: [groups],
             features: [
                 features1,
-                features2
+                features2,
+                features3,
+                features4,
+                features5,
+                features6,
+                features7,
             ]
         };
     }
