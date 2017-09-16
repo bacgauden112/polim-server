@@ -20,7 +20,8 @@ winston.add(require('winston-daily-rotate-file'), {
 winston.remove(winston.transports.Console);
 winston.level = 'debug';
 
-//global.dirname = __dirname;
+// noinspection TypeScriptUnresolvedVariable
+global['dirname'] = __dirname;
 //winston.debug('winston testing at' + path.join(__dirname, "log-access", "log_file.log"));
 //endregion
 
