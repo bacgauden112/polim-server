@@ -23,6 +23,11 @@
       "foreignKey": "integrationId",
       "through": "CustomerIntegration"
     },
+    "customerIntegration": {
+      "type": "hasMany",
+      "model": "CustomerIntegration",
+      "foreignKey": "customerId"
+    },
     "accessTokens": {
       "type": "hasMany",
       "model": "PolimAccessToken",

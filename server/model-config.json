@@ -87,7 +87,7 @@
   },
   "CustomerIntegration": {
     "dataSource": "db",
-    "public": true,
+    "public": false,
     "options": {
       "remoting": {
         "sharedMethods": {

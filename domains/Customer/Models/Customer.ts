@@ -1,12 +1,13 @@
 import {CustomerHook} from '../Business/CustomerHook';
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
-import {RelationType} from "../../Common/Constants";
+import {RelationMethod, RelationType} from "../../Common/Constants";
 import {Customer as CustomerBussiness} from "../Business/Customer";
 
 export = function (Customer) {
     LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
     LoopBackUtils.disableAllRelationMethods(Customer, 'customerSettings', RelationType.hasMany);
     LoopBackUtils.disableAllRelationMethods(Customer, 'accessTokens', RelationType.hasMany);
+    LoopBackUtils.disableAllRelationMethods(Customer, 'customerIntegration', RelationType.hasMany, [RelationMethod.findAllRelationObject]);
 
     Customer.beforeRemote('create', function (ctx, user, next) {
         CustomerHook.checkAccessToken(ctx, user, next);

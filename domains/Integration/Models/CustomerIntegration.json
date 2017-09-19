@@ -49,6 +49,7 @@
       }
     }
   },
+  "hidden": ["accessToken"],
   "validations": [],
   "relations": {
     "customer": {
