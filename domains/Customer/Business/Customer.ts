@@ -17,13 +17,7 @@ export class Customer {
     public static async getCustomer(Model: PersistedModel, ctx) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
 
-        let customer = await Model.find(
-            {
-                where: {
-                    id: customerId
-                }
-            }
-        )
+        let customer = await Model.findById(customerId);
         return customer;
     }
 }

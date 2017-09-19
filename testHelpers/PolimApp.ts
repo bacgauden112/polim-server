@@ -5,8 +5,8 @@ const path = require('path');
 require('isomorphic-fetch');
 declare let fetch:IFetch;
 export const SECRET = {
-    BAOGAM: 'secret_BG',
-    SEUDO: 'secret_SD'
+    BAOGAM: 'BAOGAM_STAGING',
+    SEUDO: 'SEUDO_STAGING'
 }
 
 /**

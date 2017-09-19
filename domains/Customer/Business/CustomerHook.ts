@@ -142,9 +142,6 @@ export class CustomerHook {
      * @param next
      */
     public static checkUserNameBeforeRegister(ctx, user, next) {
-        console.log("ctx.args.data.username");
-        console.log(ctx.args.data.username);
-
         let username = ctx.args.data.username;
 
         if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
