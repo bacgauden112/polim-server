@@ -1,10 +1,12 @@
 import {CustomerHook} from '../Business/CustomerHook';
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
-import {RelationType} from "../../Common/Constants";
+import {RelationType, RelationMethod} from "../../Common/Constants";
 import {Customer as CustomerBussiness} from "../Business/Customer";
 
 export = function (Customer) {
-    LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
+    LoopBackUtils.disableAllRelationMethods(
+        Customer, 'integrations', RelationType.hasManyThrough,
+        [RelationMethod.findAllRelationObject]);
     LoopBackUtils.disableAllRelationMethods(Customer, 'customerSettings', RelationType.hasMany);
     LoopBackUtils.disableAllRelationMethods(Customer, 'accessTokens', RelationType.hasMany);
 
