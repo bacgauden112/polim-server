@@ -47,6 +47,15 @@
         "dataType": "varchar",
         "dataLength": 255
       }
+    },
+    "email": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "email",
+        "dataType": "varchar",
+        "dataLength": 255
+      }
     }
   },
   "hidden": ["accessToken"],
