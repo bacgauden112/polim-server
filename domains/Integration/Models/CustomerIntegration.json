@@ -56,6 +56,15 @@
         "dataType": "varchar",
         "dataLength": 255
       }
+    },
+    "fullName": {
+      "type": "string",
+      "required": false,
+      "postgresql": {
+        "columnName": "fullName",
+        "dataType": "varchar",
+        "dataLength": 128
+      }
     }
   },
   "hidden": ["accessToken"],

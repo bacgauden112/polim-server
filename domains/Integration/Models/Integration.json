@@ -44,6 +44,15 @@
         "dataType": "varchar",
         "dataLength": 128
       }
+    },
+    "logo": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "logo",
+        "dataType": "varchar",
+        "dataLength": 500
+      }
     }
   },
   "validations": [],
