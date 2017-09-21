@@ -22,4 +22,22 @@ export class PurchaseOrder {
 
         return await purchasingService.getExchange(customerId, appliedTime);
     }
+
+    /**
+     * Lấy về thông tin đơn hàng
+     * @param ctx
+     * @param appliedTime
+     * @returns {Promise<IOrderFeature>}
+     */
+    public static async getOrderFeature(ctx, appliedTime) {
+        let customerId = SecurityService.getCurrentCustomerId(ctx);
+
+        let purchasingService = await IntegrationService.getPurchasingService(customerId);
+        if (!purchasingService) {
+            throw ErrorFactory
+                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+        }
+
+        return await purchasingService.getOrderFeature(customerId, appliedTime);
+    }
 }
