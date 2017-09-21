@@ -1,8 +1,6 @@
 /**
  * Created by Piggat on 8/8/2017.
  */
-import {SecurityService} from "../../System/Services/SecurityService";
-import {IntegrationService} from "../../Integration/Services/IntegrationService";
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
 import {PurchaseOrder} from "../Business/PurchaseOrder";
 export = function (Model) {

@@ -230,6 +230,16 @@
     }
   },
   "validations": [],
+  "mixins": {
+    "ComputedProperty": {
+      "properties": [
+        {
+          "name": "fullName",
+          "function": "getFullName"
+        }
+      ]
+    }
+  },
   "acls": [
     {
       "accessType": "*",

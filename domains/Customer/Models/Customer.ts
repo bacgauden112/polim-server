@@ -2,6 +2,8 @@ import {CustomerHook} from '../Business/CustomerHook';
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
 import {RelationMethod, RelationType} from "../../Common/Constants";
 import {Customer as CustomerBussiness} from "../Business/Customer";
+import {RelationType} from "../../Common/Constants";
+import Customer = Models.Customer;
 
 export = function (Customer) {
     LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
@@ -72,4 +74,33 @@ export = function (Customer) {
             description: "Lấy thông tin người dùng"
         }
     );
+    });
+
+    //region -- Full name computed value --
+    Customer.getFullName = (instance:Customer) => {
+        if (!instance.firstName) {
+            return instance.lastName;
+        }
+        else if (!instance.lastName) {
+            return instance.firstName;
+        }
+        else if (!instance.firstName && !instance.lastName) {
+            return '';
+        }
+        return `${instance.lastName} ${instance.firstName}`;
+    };
+
+    Customer.prototype.getFullName = function() {
+        if (!this.firstName) {
+            return this.lastName;
+        }
+        else if (!this.lastName) {
+            return this.firstName;
+        }
+        else if (!this.firstName && !this.lastName) {
+            return '';
+        }
+        return `${this.lastName} ${this.firstName}`;
+    }
+    //endregion
 }

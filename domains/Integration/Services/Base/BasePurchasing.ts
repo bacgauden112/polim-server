@@ -55,8 +55,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 },
                 response: await response.text()
             };
-            logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            logger.error(new Error("Error response from server"), context)
         }
         else {
             return await response.json();

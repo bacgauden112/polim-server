@@ -1,9 +1,9 @@
 export interface IPurchasing {
     getExchange(customerId: number): Promise<IExchangeRate>;
     getExchange(customerId: number, appliedTime: Date): Promise<IExchangeRate>;
+    getFee(customerId: number, datas): Promise<IFee>;
     getOrderFeature(customerId:number): Promise<IOrderFeature>;
     getOrderFeature(customerId:number, appliedTime: Date): Promise<IOrderFeature>;
-    getFee(customerId: number, datas): Promise<IFee>;
 }
 
 export interface IExchangeRate {
@@ -90,7 +90,7 @@ export interface IFeature {
     /**
      * Tính chất này thuộc nhóm nào
      */
-    groupcode: string,
+    groupCode: string,
     /**
      * Để chọn được tính chất này, có bắt buộc phải chọn một trong các tính chất khác hay không.
      * Ví dụ: phải chọn chuyển phát nhanh thì mới chọn được chuyển thẳng.
