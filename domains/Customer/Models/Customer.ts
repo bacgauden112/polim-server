@@ -2,7 +2,6 @@ import {CustomerHook} from '../Business/CustomerHook';
 import {LoopBackUtils} from "../../../libs/LoopBackUtils";
 import {RelationMethod, RelationType} from "../../Common/Constants";
 import {Customer as CustomerBussiness} from "../Business/Customer";
-import {RelationType} from "../../Common/Constants";
 import Customer = Models.Customer;
 
 export = function (Customer) {
@@ -74,7 +73,6 @@ export = function (Customer) {
             description: "Lấy thông tin người dùng"
         }
     );
-    });
 
     //region -- Full name computed value --
     Customer.getFullName = (instance:Customer) => {
