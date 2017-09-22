@@ -33,7 +33,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: false,
             pending: false,
             default: true,
-            groupcode: null,
+            groupCode: null,
             requires: null
         };
         let features2: IFeature = {
@@ -43,7 +43,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: false,
             default: true,
-            groupcode: null,
+            groupCode: null,
             requires: null
         };
         let features3: IFeature = {
@@ -53,7 +53,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: false,
             default: false,
-            groupcode: null,
+            groupCode: null,
             requires: null
         };
         let features4: IFeature = {
@@ -63,7 +63,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: false,
             default: true,
-            groupcode: "INTERNATIONAL",
+            groupCode: "INTERNATIONAL",
             requires: null
         };
         let features5: IFeature = {
@@ -73,7 +73,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: false,
             default: false,
-            groupcode: "INTERNATIONAL",
+            groupCode: "INTERNATIONAL",
             requires: null
         };
         let features6: IFeature = {
@@ -83,7 +83,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: true,
             default: false,
-            groupcode: "INTERNATIONAL",
+            groupCode: "INTERNATIONAL",
             requires: null
         };
         let features7: IFeature = {
@@ -93,7 +93,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             enabled: true,
             pending: true,
             default: false,
-            groupcode: null,
+            groupCode: null,
             requires: null
         };
 
