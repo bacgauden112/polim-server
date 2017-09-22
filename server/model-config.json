@@ -69,6 +69,7 @@
       "remoting": {
         "sharedMethods": {
           "*": false,
+          "prototype.__findById__accessTokens": true,
           "create": true,
           "login": true,
           "logout": true,

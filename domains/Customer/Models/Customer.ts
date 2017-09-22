@@ -7,7 +7,7 @@ import Customer = Models.Customer;
 export = function (Customer) {
     LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
     LoopBackUtils.disableAllRelationMethods(Customer, 'customerSettings', RelationType.hasMany);
-    LoopBackUtils.disableAllRelationMethods(Customer, 'accessTokens', RelationType.hasMany);
+    LoopBackUtils.disableAllRelationMethods(Customer, 'accessTokens', RelationType.hasMany, [RelationMethod.findRelationObjectById]);
     LoopBackUtils.disableAllRelationMethods(Customer, 'customerIntegration', RelationType.hasMany, [RelationMethod.findAllRelationObject]);
 
     Customer.beforeRemote('create', function (ctx, user, next) {
