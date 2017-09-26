@@ -1,0 +1,49 @@
+{
+  "name": "AddressCode",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "postgresql": {
+      "table": "AddressCode"
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "name",
+        "dataType": "varchar",
+        "dataLength": 50
+      }
+    },
+    "level": {
+      "type": "number",
+      "required": true,
+      "postgresql": {
+        "columnName": "level"
+      }
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "postgresql": {
+        "columnName": "code",
+        "dataType": "varchar",
+        "dataLength": 10
+      }
+    },
+    "pid": {
+      "type": "number",
+      "required": true,
+      "postgresql": {
+        "columnName": "pid"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

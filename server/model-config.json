@@ -78,6 +78,17 @@
       }
     }
   },
+  "AddressCode": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true
+          }
+      }
+    }
+  },
   "EventQueue": {
     "dataSource": "db",
     "public": false
