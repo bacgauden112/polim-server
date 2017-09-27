@@ -1,4 +1,4 @@
-import {IPurchasing, IExchangeRate, IFee, IOrderFeature} from "./IPurchasing";
+import {IPurchasing, IExchangeRate, IFee, IOrderFeature, IAddress} from "./IPurchasing";
 import {BaseIntegration} from "./BaseIntegration";
 import {BaseAPIClient, HttpMethod} from "./BaseAPIClient";
 import {Logger} from "../../../../libs/Logger";
@@ -12,7 +12,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
     protected static SETTING_KEY = {
         GET_EXCHANGE_API: 'GET_EXCHANGE_API',
         GET_FEE_API: 'GET_FEE_API',
-        GET_FEATURE_ORDER_API: 'GET_FEATURE_ORDER_API'
+        GET_FEATURE_ORDER_API: 'GET_FEATURE_ORDER_API',
+        GET_ADDRESS_API: 'GET_ADDRESS_API'
     };
 
     /**
@@ -55,7 +56,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 },
                 response: await response.text()
             };
-            logger.error(new Error("Error response from server"), context)
+            logger.error(new Error("Error response from server"), context);
+            throw IntegrationAPIError;
         }
         else {
             return await response.json();
@@ -132,6 +134,47 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         let response = await client.request(
             url,
             HttpMethod.POST,
+            data
+        );
+
+        if (response.status != 200) {
+            let logger = Logger.factory('integration');
+            let context = {
+                request: {
+                    url: url,
+                    data: data
+                },
+                response: await response.text()
+            };
+            logger.error(new Error("Error response from server"), context);
+            throw IntegrationAPIError;
+        }
+        else {
+            return await response.json();
+        }
+    }
+
+    public async getAddress(customerId: number): Promise<IAddress> {
+        let client:BaseAPIClient = await this.createClient(customerId);
+
+        let data:any = {
+            customerId: customerId
+        };
+
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.GET_ADDRESS_API);
+
+        if (!url) {
+            throw ErrorFactory
+                .createError('Integration do not support this function yet', 400, 'NOT_SUPPORTED',
+                    [
+                        ErrorFactory.ERRORS.E101_NOT_IMPLEMENTED
+                    ]
+                );
+        }
+
+        let response = await client.request(
+            url,
+            HttpMethod.GET,
             data
         );
 

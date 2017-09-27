@@ -4,6 +4,7 @@ export interface IPurchasing {
     getFee(customerId: number, datas): Promise<IFee>;
     getOrderFeature(customerId:number): Promise<IOrderFeature>;
     getOrderFeature(customerId:number, appliedTime: Date): Promise<IOrderFeature>;
+    getAddress(customerId:number): Promise<IAddress>;
 }
 
 export interface IExchangeRate {
@@ -186,4 +187,35 @@ export interface IFeatures {
      * Ví dụ: phải chọn chuyển phát nhanh thì mới chọn được chuyển thẳng.
      */
     requires: Array<string>
+}
+
+export interface IAddress {
+    /**
+     * Địa chỉ chi tiết (số nhà, đường phố, phường xã)
+     */
+    streetAddress: string,
+    /**
+     * Mã quận huyện
+     */
+    districtId: string,
+    /**
+     * Mã tỉnh/thành phố
+     */
+    provinceId: string,
+    /**
+     * Tên người liên hệ nhận hàng
+     */
+    contactName: string,
+    /**
+     * Số điện thoại người liên hệ nhận hàng
+     */
+    contactPhone: string,
+    /**
+     * Có phải là địa chỉ mặc định hay không
+     */
+    isDefault: boolean,
+    /**
+     * Kiểu địa chỉ
+     */
+    type: number
 }

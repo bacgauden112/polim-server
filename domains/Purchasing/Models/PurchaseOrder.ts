@@ -147,4 +147,29 @@ export = function (Model) {
         }
     );
 
+    /**
+     *
+     * @param ctx
+     * @param datas
+     * @param next
+     */
+    Model.getAddress = function (ctx, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.getAddress(ctx), next);
+    };
+    /**
+     * API trả về địa chỉ của khách
+     */
+    Model.remoteMethod(
+        'getAddress',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            }],
+            returns: {arg: 'address', type: 'Object', root: true},
+            http: {path: '/address', verb: 'get'},
+            description: "Lấy các thông tin địa chỉ nhận hàng của khách"
+        }
+    );
 }
