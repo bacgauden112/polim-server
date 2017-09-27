@@ -2,7 +2,7 @@
  * Created by Piggat on 8/4/2017.
  */
 import {BaseIntegration} from "./Base/BaseIntegration";
-import {IFee, IPurchasing, IServiceFee} from "./Base/IPurchasing";
+import {IAddress, IFee, IPurchasing, IServiceFee} from "./Base/IPurchasing";
 import {IExchangeRate} from "./Base/IPurchasing";
 import {IOrderFeature, IGroup, IFeature} from "./Base/IPurchasing";
 /**
@@ -111,7 +111,6 @@ export class MockupService extends BaseIntegration implements IPurchasing {
         };
     }
 
-
     async getFee(customerId, data): Promise<IFee> {
         let serviceFees: Array<IServiceFee> = [
             {
@@ -140,6 +139,17 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             total: 53760000,
             currency: "VND",
             serviceFees: serviceFees
+        };
+    }
+    async getAddress(customerId): Promise<IAddress> {
+        return {
+            streetAddress: "Số 1A tổ 2 Giáp Nhất, phường Nhân Chính",
+            districtId: "VN.HI.TX",
+            provinceId: "VN.HI",
+            contactName: "Nguyễn Xuân Kiên",
+            contactPhone: "091234567890",
+            isDefault: true,
+            type: 1
         };
     }
     //endregion

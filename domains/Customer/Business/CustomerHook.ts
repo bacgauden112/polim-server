@@ -48,19 +48,6 @@ export class CustomerHook {
         }
         let externalId = headers['external-id'];
 
-        /*let integrationModel = app.models.Integration;
-        let integrationObj = await integrationModel.findOne({
-            where: {
-                externalId: externalId
-            }
-        });
-        if (integrationObj != null) {
-            next(ErrorFactory.createError('Đã tồn tại id tài khoản dịch vụ', '400', 'INVALID_EXTERNAL_ID'));
-            return;
-        } else {
-            ctx.externalId = integrationObj.externalId;
-            next();
-        }*/
         ctx.externalId = externalId;
         next();
     }
