@@ -160,7 +160,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         }
     }
 
-    public async getAddress(customerId: number): Promise<IAddress> {
+    public async getAddress(customerId: number): Promise<IAddress[]> {
         let client:BaseAPIClient = await this.createClient(customerId);
 
         let data:any = {

@@ -4,7 +4,7 @@ export interface IPurchasing {
     getFee(customerId: number, datas): Promise<IFee>;
     getOrderFeature(customerId:number): Promise<IOrderFeature>;
     getOrderFeature(customerId:number, appliedTime: Date): Promise<IOrderFeature>;
-    getAddress(customerId:number): Promise<IAddress>;
+    getAddress(customerId:number): Promise<IAddress[]>;
 }
 
 export interface IExchangeRate {

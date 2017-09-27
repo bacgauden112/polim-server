@@ -141,16 +141,27 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             serviceFees: serviceFees
         };
     }
-    async getAddress(customerId): Promise<IAddress> {
-        return {
-            streetAddress: "Số 1A tổ 2 Giáp Nhất, phường Nhân Chính",
-            districtId: "VN.HI.TX",
-            provinceId: "VN.HI",
-            contactName: "Nguyễn Xuân Kiên",
-            contactPhone: "091234567890",
-            isDefault: true,
-            type: 1
-        };
+    async getAddress(customerId): Promise<IAddress[]> {
+        return [
+            {
+                streetAddress: "Số 1A tổ 2 Giáp Nhất, phường Nhân Chính",
+                districtId: "VN.HI.TX",
+                provinceId: "VN.HI",
+                contactName: "Nguyễn Xuân Kiên",
+                contactPhone: "091234567890",
+                isDefault: true,
+                type: 1
+            },
+            {
+                streetAddress: "Số 29A tổ 4 Giáp Nhị, phường Hoàng Liệt",
+                districtId: "VN.HI.HM",
+                provinceId: "VN.HI",
+                contactName: "Đặng Quang Anh",
+                contactPhone: "09998110287",
+                isDefault: true,
+                type: 1
+            }
+        ];
     }
     //endregion
 }
