@@ -84,7 +84,8 @@
     "options": {
       "remoting": {
         "sharedMethods": {
-          "*": true
+          "*": false,
+          "find": true
           }
       }
     }
