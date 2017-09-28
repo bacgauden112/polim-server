@@ -5,6 +5,7 @@ export interface IPurchasing {
     getOrderFeature(customerId:number): Promise<IOrderFeature>;
     getOrderFeature(customerId:number, appliedTime: Date): Promise<IOrderFeature>;
     getAddress(customerId:number): Promise<IAddress[]>;
+    createAddress(customerId:number, datas): Promise<any>;
 }
 
 export interface IExchangeRate {
