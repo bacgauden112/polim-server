@@ -163,5 +163,11 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             }
         ];
     }
+
+    async createAddress(customerId, datas): Promise<any> {
+        return {
+            result: 'success!'
+        };
+    }
     //endregion
 }

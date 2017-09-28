@@ -172,4 +172,44 @@ export = function (Model) {
             description: "Lấy các thông tin địa chỉ nhận hàng của khách"
         }
     );
+    /**
+     * API tạo địa chỉ mới
+     * @param ctx
+     * @param appliedTime
+     * @param next
+     */
+    Model.createAddress = function (ctx, datas, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.createAddress(ctx, datas), next);
+    };
+
+    Model.remoteMethod(
+        'createAddress',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            },
+                {
+                    arg: 'datas',
+                    type: 'Object',
+                    description: "Thông tin người bán, danh sách sản phẩm và danh sách các tính chất đơn",
+                    default:`{
+ "streetAddress": "string",
+ "districtId": "string",
+ "provinceId": "string",
+ "contactName": "string",
+ "contactPhone": "string",
+ "isDefault": "boolean",
+ "type": "number"
+}`,
+                    http: {
+                        source: 'body'
+                    }
+                }],
+            returns: {arg: 'result', type: 'Object', root: true},
+            http: {path: '/addresses', verb: 'post'},
+            description: "Tạo địa chỉ mới"
+        }
+    );
 }
