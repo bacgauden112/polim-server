@@ -141,5 +141,11 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             serviceFees: serviceFees
         };
     }
+
+    async deleteAddress(customerId, id): Promise<any> {
+        return {
+            result: "delete success!"
+        };
+    }
     //endregion
 }
