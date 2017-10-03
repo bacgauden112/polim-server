@@ -48,11 +48,19 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
+      "principalId": "1",
+      "permission": "ALLOW",
+      "property": "*",
+      "model": "*"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY"
     },
     {
-      "accessType": "*",
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
