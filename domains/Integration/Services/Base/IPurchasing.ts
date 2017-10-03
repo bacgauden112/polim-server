@@ -190,6 +190,7 @@ export interface IFeatures {
 }
 
 export interface IAddress {
+    id: number
     /**
      * Địa chỉ chi tiết (số nhà, đường phố, phường xã)
      */
