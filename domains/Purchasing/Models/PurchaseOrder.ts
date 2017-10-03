@@ -212,4 +212,23 @@ export = function (Model) {
             description: "Tạo địa chỉ mới"
         }
     );
+    Model.deleteAddress = function (ctx, id, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, id), next);
+    };
+
+    Model.remoteMethod(
+        'deleteAddress',
+        {
+            accepts: [{
+                    arg: 'context', type: 'Object', http: function (ctx) {
+                        return ctx;
+                    }
+                },
+                { arg: 'id', type: 'number' }
+            ],
+            returns: {arg: 'result', type: 'Object', root: true},
+            http: {path: '/addresses', verb: 'delete'},
+            description: "Xoa dia chi"
+        }
+    );
 }

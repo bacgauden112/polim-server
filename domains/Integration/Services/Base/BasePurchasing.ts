@@ -243,4 +243,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             return await response.json();
         }
     }
+
+    public async deleteAddress(customerId: number, id): Promise<any> {
+
+    }
 }
