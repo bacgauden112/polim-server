@@ -144,6 +144,7 @@ export class MockupService extends BaseIntegration implements IPurchasing {
     async getAddress(customerId): Promise<IAddress[]> {
         return [
             {
+                id: 1,
                 streetAddress: "Số 1A tổ 2 Giáp Nhất, phường Nhân Chính",
                 districtId: "VN.HI.TX",
                 provinceId: "VN.HI",
@@ -153,12 +154,13 @@ export class MockupService extends BaseIntegration implements IPurchasing {
                 type: 1
             },
             {
+                id: 2,
                 streetAddress: "Số 29A tổ 4 Giáp Nhị, phường Hoàng Liệt",
                 districtId: "VN.HI.HM",
                 provinceId: "VN.HI",
                 contactName: "Đặng Quang Anh",
                 contactPhone: "09998110287",
-                isDefault: true,
+                isDefault: false,
                 type: 1
             }
         ];
