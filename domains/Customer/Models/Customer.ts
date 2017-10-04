@@ -135,8 +135,8 @@ export = function (Customer) {
      * @param appliedTime
      * @param next
      */
-    Customer.createAddress = function (ctx, datas, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.createAddress(ctx, datas), next);
+    Customer.createAddress = function (ctx, id, datas, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.createAddress(ctx, id, datas), next);
     };
 
     Customer.remoteMethod(
@@ -147,6 +147,7 @@ export = function (Customer) {
                     return ctx;
                 }
             },
+                {arg: 'id', type: 'number', required: true},
                 {
                     arg: 'datas',
                     type: 'Object',
@@ -165,11 +166,11 @@ export = function (Customer) {
                     }
                 }],
             returns: {arg: 'result', type: 'Object', root: true},
-            http: {path: '/addresses', verb: 'post'},
+            http: {path: '/:id/addresses', verb: 'post'},
             description: "Tạo địa chỉ mới"
         }
     );
-    Customer.deleteAddress = function (ctx, id, next) {
+    Customer.deleteAddress = function (ctx, cid, id, next) {
         LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, id), next);
     };
 
@@ -181,10 +182,11 @@ export = function (Customer) {
                     return ctx;
                 }
             },
-                { arg: 'id', type: 'number' }
+                { arg: 'cid', type: 'number', required: true },
+                { arg: 'id', type: 'number', required: true }
             ],
             returns: {arg: 'result', type: 'Object', root: true},
-            http: {path: '/addresses', verb: 'delete'},
+            http: {path: '/:cid/addresses/:id', verb: 'delete'},
             description: "Xoa dia chi"
         }
     );

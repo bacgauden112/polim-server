@@ -130,5 +130,6 @@ interface IFetch {
 
 export const HttpMethod = {
     GET: 'GET',
-    POST: 'POST'
+    POST: 'POST',
+    DELETE: 'DELETE'
 };

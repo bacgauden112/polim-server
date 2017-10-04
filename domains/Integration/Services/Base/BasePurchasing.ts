@@ -245,6 +245,44 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
     }
 
     public async deleteAddress(customerId: number, id): Promise<any> {
+        let client:BaseAPIClient = await this.createClient(customerId);
 
+        let data:any = {
+            customerId: customerId,
+            id: id
+        };
+
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.GET_ADDRESS_API);
+
+        if (!url) {
+            throw ErrorFactory
+                .createError('Integration do not support this function yet', 400, 'NOT_SUPPORTED',
+                    [
+                        ErrorFactory.ERRORS.E101_NOT_IMPLEMENTED
+                    ]
+                );
+        }
+
+        let response = await client.request(
+            url,
+            HttpMethod.DELETE,
+            data
+        );
+
+        if (response.status != 200) {
+            let logger = Logger.factory('integration');
+            let context = {
+                request: {
+                    url: url,
+                    data: data
+                },
+                response: await response.text()
+            };
+            logger.error(new Error("Error response from server"), context);
+            throw IntegrationAPIError;
+        }
+        else {
+            return await response.json();
+        }
     }
 }
