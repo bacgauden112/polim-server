@@ -73,7 +73,10 @@
           "create": true,
           "login": true,
           "logout": true,
-          "me": true
+          "me": true,
+          "getAddress": true,
+          "createAddress": true,
+          "deleteAddress": true
         }
       }
     }

@@ -3,6 +3,7 @@ import {LoopBackUtils} from "../../../libs/LoopBackUtils";
 import {RelationMethod, RelationType} from "../../Common/Constants";
 import {Customer as CustomerBussiness} from "../Business/Customer";
 import Customer = Models.Customer;
+import {PurchaseOrder} from "../../Purchasing/Business/PurchaseOrder";
 
 export = function (Customer) {
     LoopBackUtils.disableAllRelationMethods(Customer, 'integrations', RelationType.hasManyThrough);
@@ -100,5 +101,92 @@ export = function (Customer) {
         }
         return `${this.lastName} ${this.firstName}`;
     }
+    //endregion
+
+    // region -- Address API --
+    /**
+     *
+     * @param ctx
+     * @param next
+     */
+    Customer.getAddress = function (ctx, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.getAddress(ctx), next);
+    };
+    /**
+     * API trả về địa chỉ của khách
+     */
+    Customer.remoteMethod(
+        'getAddress',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            }],
+            returns: {arg: 'addresses', type: 'Object', root: true},
+            http: {path: '/addresses', verb: 'get'},
+            description: "Lấy các thông tin địa chỉ nhận hàng của khách"
+        }
+    );
+
+    /**
+     * API tạo địa chỉ mới
+     * @param ctx
+     * @param appliedTime
+     * @param next
+     */
+    Customer.createAddress = function (ctx, datas, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.createAddress(ctx, datas), next);
+    };
+
+    Customer.remoteMethod(
+        'createAddress',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            },
+                {
+                    arg: 'datas',
+                    type: 'Object',
+                    description: "Thông tin người bán, danh sách sản phẩm và danh sách các tính chất đơn",
+                    default:`{
+ "streetAddress": "string",
+ "districtId": "string",
+ "provinceId": "string",
+ "contactName": "string",
+ "contactPhone": "string",
+ "isDefault": "boolean",
+ "type": "number"
+}`,
+                    http: {
+                        source: 'body'
+                    }
+                }],
+            returns: {arg: 'result', type: 'Object', root: true},
+            http: {path: '/addresses', verb: 'post'},
+            description: "Tạo địa chỉ mới"
+        }
+    );
+    Customer.deleteAddress = function (ctx, id, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, id), next);
+    };
+
+    Customer.remoteMethod(
+        'deleteAddress',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            },
+                { arg: 'id', type: 'number' }
+            ],
+            returns: {arg: 'result', type: 'Object', root: true},
+            http: {path: '/addresses', verb: 'delete'},
+            description: "Xoa dia chi"
+        }
+    );
     //endregion
 }

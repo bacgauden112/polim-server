@@ -254,7 +254,8 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": [
-        "me"
+        "me",
+        "getAddress"
       ]
     },
     {
@@ -278,7 +279,9 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": [
-        "changePassword"
+        "changePassword",
+        "createAddress",
+        "deleteAddress"
       ]
     },
     {
