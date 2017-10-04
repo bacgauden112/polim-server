@@ -11,7 +11,7 @@ import {IOrderFeature, IGroup, IFeature} from "./Base/IPurchasing";
 export class MockupService extends BaseIntegration implements IPurchasing {
     //region -- IPurchasing implement --
     async getExchange(customerId, appliedTime = new Date()): Promise<IExchangeRate> {
-        let rate = 3000 * appliedTime.getSeconds() * 0.01;
+        let rate = 3000 * appliedTime.getSeconds() * appliedTime.getMinutes() * 0.01 + 1;
         return {
             rate: rate,
             baseCurrency: 'CNY',
