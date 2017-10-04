@@ -58,15 +58,19 @@ export class PurchaseOrder {
         return await purchasingService.getFee(customerId, datas);
     }
 
-    public static async getAddress(ctx){
+    public static async getAddress(ctx, id){
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        let purchasingService = await IntegrationService.getPurchasingService(customerId);
-        if (!purchasingService) {
-            throw ErrorFactory
-                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
-        }
+        if(customerId == id) {
+            let purchasingService = await IntegrationService.getPurchasingService(customerId);
+            if (!purchasingService) {
+                throw ErrorFactory
+                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+            }
 
-        return await purchasingService.getAddress(customerId);
+            return await purchasingService.getAddress(customerId);
+        }
+        throw ErrorFactory
+            .createError(`Customer id invalid`, 401, 'INVALID_ID');
     }
 
 

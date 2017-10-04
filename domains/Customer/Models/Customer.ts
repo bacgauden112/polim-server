@@ -109,8 +109,8 @@ export = function (Customer) {
      * @param ctx
      * @param next
      */
-    Customer.getAddress = function (ctx, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.getAddress(ctx), next);
+    Customer.getAddress = function (ctx, id, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.getAddress(ctx, id), next);
     };
     /**
      * API trả về địa chỉ của khách
@@ -122,9 +122,9 @@ export = function (Customer) {
                 arg: 'context', type: 'Object', http: function (ctx) {
                     return ctx;
                 }
-            }],
+            }, {arg: 'id', type: 'number', required: true}],
             returns: {arg: 'addresses', type: 'Object', root: true},
-            http: {path: '/addresses', verb: 'get'},
+            http: {path: '/:id/addresses', verb: 'get'},
             description: "Lấy các thông tin địa chỉ nhận hàng của khách"
         }
     );
