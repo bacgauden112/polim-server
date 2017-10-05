@@ -170,6 +170,56 @@ export = function (Customer) {
             description: "Tạo địa chỉ mới"
         }
     );
+
+    /**
+     *
+     * @param context
+     * @param id
+     * @param data
+     * @param next
+     */
+    Customer.editAddress = function (context, id, data, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.editAddress(context, id, data), next);
+    };
+    /**
+     * API chỉnh sửa địa chỉ của khách
+     */
+    Customer.remoteMethod(
+        'editAddress',
+        {
+            accepts: [
+                {
+                    arg: 'context', type: 'Object', http: function (ctx) {
+                        return ctx;
+                    }
+                },
+                {
+                    arg: 'id', type: 'number', required: true
+                },
+                {
+                    arg: 'data',
+                    type: 'Object',
+                    description: "Thông tin người bán, danh sách sản phẩm và danh sách các tính chất đơn",
+                    default: `{
+                         "streetAddress": "string",
+                         "districtId": "string",
+                         "provinceId": "string",
+                         "contactName": "string",
+                         "contactPhone": "string",
+                         "isDefault": "boolean",
+                         "type": "number"
+                    }`,
+                    http: {
+                        source: 'body'
+                    }
+                }
+            ],
+            returns: {arg: 'address', type: 'Object', root: true},
+            http: {path: '/:id/address', verb: 'put'},
+            description: "Chỉnh sửa thông tin địa chỉ nhận hàng của khách"
+        }
+    );
+
     Customer.deleteAddress = function (ctx, cid, id, next) {
         LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, id), next);
     };

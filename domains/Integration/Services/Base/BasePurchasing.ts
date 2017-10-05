@@ -14,7 +14,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         GET_FEE_API: 'GET_FEE_API',
         GET_FEATURE_ORDER_API: 'GET_FEATURE_ORDER_API',
         GET_ADDRESS_API: 'GET_ADDRESS_API',
-        CREATE_ADDRESS_API: 'CREATE_ADDRESS_API'
+        CREATE_ADDRESS_API: 'CREATE_ADDRESS_API',
+        UPDATE_ADDRESS_API: 'UPDATE_ADDRESS_API'
     };
 
     /**
@@ -183,6 +184,49 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         let response = await client.request(
             url,
             HttpMethod.POST,
+            data
+        );
+
+        if (response.status != 200) {
+            let logger = Logger.factory('integration');
+            let context = {
+                request: {
+                    url: url,
+                    data: data
+                },
+                response: await response.text()
+            };
+            logger.error(new Error("Error response from server"), context);
+            throw IntegrationAPIError;
+        }
+        else {
+            return await response.json();
+        }
+    }
+
+    public async editAddress(customerId: number, id, datas): Promise<IFee> {
+        let client:BaseAPIClient = await this.createClient(customerId);
+
+        let data:any = {};
+        if(datas) {
+            data = datas;
+        }
+
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.UPDATE_ADDRESS_API);
+        url = url.replace('{id}', id);
+
+        if (!url) {
+            throw ErrorFactory
+                .createError('Integration do not support this function yet', 400, 'NOT_SUPPORTED',
+                    [
+                        ErrorFactory.ERRORS.E101_NOT_IMPLEMENTED
+                    ]
+                );
+        }
+
+        let response = await client.request(
+            url,
+            HttpMethod.PUT,
             data
         );
 

@@ -76,6 +76,7 @@
           "me": true,
           "getAddress": true,
           "createAddress": true,
+          "editAddress": true,
           "deleteAddress": true
         }
       }
