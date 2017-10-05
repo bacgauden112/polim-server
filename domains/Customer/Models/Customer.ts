@@ -174,12 +174,13 @@ export = function (Customer) {
     /**
      *
      * @param context
+     * @param cid
      * @param id
      * @param data
      * @param next
      */
-    Customer.editAddress = function (context, id, data, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.editAddress(context, id, data), next);
+    Customer.editAddress = function (context, cid, id, data, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.editAddress(context, cid, id, data), next);
     };
     /**
      * API chỉnh sửa địa chỉ của khách
@@ -192,6 +193,9 @@ export = function (Customer) {
                     arg: 'context', type: 'Object', http: function (ctx) {
                         return ctx;
                     }
+                },
+                {
+                    arg: 'cid', type: 'number', required: true
                 },
                 {
                     arg: 'id', type: 'number', required: true
@@ -215,7 +219,7 @@ export = function (Customer) {
                 }
             ],
             returns: {arg: 'address', type: 'Object', root: true},
-            http: {path: '/:id/address', verb: 'put'},
+            http: {path: '/:cid/address/:id', verb: 'put'},
             description: "Chỉnh sửa thông tin địa chỉ nhận hàng của khách"
         }
     );
