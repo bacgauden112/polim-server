@@ -125,6 +125,10 @@
     "dataSource": null,
     "public": true
   },
+  "ExchangeRate": {
+    "dataSource": "db",
+    "public": false
+  },
   "WebViewLog": {
     "dataSource": "db",
     "public": true,
