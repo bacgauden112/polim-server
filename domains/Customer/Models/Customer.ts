@@ -224,7 +224,7 @@ export = function (Customer) {
     );
 
     Customer.deleteAddress = function (ctx, cid, id, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, id), next);
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.deleteAddress(ctx, cid, id), next);
     };
 
     Customer.remoteMethod(
