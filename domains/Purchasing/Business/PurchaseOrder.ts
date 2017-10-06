@@ -1,6 +1,9 @@
 import {SecurityService} from "../../System/Services/SecurityService";
 import {IntegrationService} from "../../Integration/Services/IntegrationService";
 import {ErrorFactory} from "../../../server/utils/ErrorFactory";
+import LoopBackBase = LoopBack.LoopBackBase;
+import ExchangeRate = Models.ExchangeRate;
+
 /**
  * Created by Piggat on 8/10/2017.
  */
@@ -14,13 +17,49 @@ export class PurchaseOrder {
     public static async getExchangeRate(ctx, appliedTime) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
 
-        let purchasingService = await IntegrationService.getPurchasingService(customerId);
-        if (!purchasingService) {
-            throw ErrorFactory
-                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+        let loopback:LoopBackBase = require('loopback');
+        let exchangeRateModel = loopback.getModel('ExchangeRate');
+        let exchangeRate:ExchangeRate = await exchangeRateModel.findOne({
+            where: {
+                "modifier": customerId
+            }
+        });
+
+        // check exp exchange rate
+        let isExpired = false;
+
+        if(exchangeRate) {
+            let preDate = exchangeRate.modifiedAt;
+            let curDate = new Date();
+            if(curDate.getDay() - preDate.getDay() >= 1) {
+                isExpired = true;
+            } else {
+                isExpired = false;
+            }
         }
 
-        return await purchasingService.getExchange(customerId, appliedTime);
+        if(!exchangeRate || isExpired) {
+            let purchasingService = await IntegrationService.getPurchasingService(customerId);
+            if (!purchasingService) {
+                throw ErrorFactory
+                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+            }
+            let result = await purchasingService.getExchange(customerId, appliedTime);
+            result['modifier'] = customerId;
+            let created = await exchangeRateModel.upsertWithWhere({
+                "where": {
+                    "modifier": customerId
+                }
+            },result);
+            exchangeRate = await exchangeRateModel.findOne({
+                where: {
+                    "modifier": customerId
+                }
+            });
+            return exchangeRate;
+        } else {
+            return exchangeRate;
+        }
     }
 
     /**
