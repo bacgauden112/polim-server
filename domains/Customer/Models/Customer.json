@@ -255,8 +255,7 @@
       "permission": "ALLOW",
       "property": [
         "me",
-        "getAddress",
-        "confirmPassword"
+        "getAddress"
       ]
     },
     {
@@ -282,7 +281,8 @@
       "property": [
         "changePassword",
         "createAddress",
-        "deleteAddress"
+        "deleteAddress",
+        "confirmPassword"
       ]
     },
     {
