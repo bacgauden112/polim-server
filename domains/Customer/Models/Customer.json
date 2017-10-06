@@ -282,7 +282,8 @@
       "property": [
         "changePassword",
         "createAddress",
-        "deleteAddress"
+        "deleteAddress",
+        "editAddress"
       ]
     },
     {
