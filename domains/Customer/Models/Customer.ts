@@ -203,15 +203,14 @@ export = function (Customer) {
                 {
                     arg: 'data',
                     type: 'Object',
-                    description: "Thông tin người bán, danh sách sản phẩm và danh sách các tính chất đơn",
+                    description: "Địa chỉ nhận hàng",
                     default: `{
                          "streetAddress": "string",
                          "districtId": "string",
                          "provinceId": "string",
                          "contactName": "string",
                          "contactPhone": "string",
-                         "isDefault": "boolean",
-                         "type": "number"
+                         "isDefault": "boolean"
                     }`,
                     http: {
                         source: 'body'
