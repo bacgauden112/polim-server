@@ -191,4 +191,32 @@ export = function (Customer) {
         }
     );
     //endregion
+    //region -- Confirm password --
+    Customer.confirmPassword = function(ctx, data, next) {
+        LoopBackUtils.processPromiseCallback(CustomerBussiness.confirmPassword(Customer, data, ctx),next);
+    };
+
+    Customer.remoteMethod(
+        'confirmPassword',
+        {
+            accepts: [{
+                arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+            },
+            {
+                arg: 'data',
+                type: 'Object',
+                description: "Mật khẩu",
+                http: {
+                    source: 'body'
+                },
+                default: `{"password":"string"}`
+            }],
+            returns: {arg: 'result', type: 'boolean'},
+            http: {path: '/confirmPassword', verb: 'post'},
+            description: "Xác nhận mật khẩu"
+        }
+    );
+    // endregion
 }

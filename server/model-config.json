@@ -76,7 +76,8 @@
           "me": true,
           "getAddress": true,
           "createAddress": true,
-          "deleteAddress": true
+          "deleteAddress": true,
+          "confirmPassword": true
         }
       }
     }

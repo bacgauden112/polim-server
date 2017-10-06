@@ -20,4 +20,14 @@ export class Customer {
         let customer = await Model.findById(customerId);
         return customer;
     }
+
+    public static async confirmPassword(Model: PersistedModel, data, ctx) {
+        let customerId = SecurityService.getCurrentCustomerId(ctx);
+
+        let customer = await Model.findById(customerId);
+
+        let result = await customer.hasPassword(data.password);
+        return result;
+    }
+
 }

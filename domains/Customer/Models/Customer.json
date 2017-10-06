@@ -255,7 +255,8 @@
       "permission": "ALLOW",
       "property": [
         "me",
-        "getAddress"
+        "getAddress",
+        "confirmPassword"
       ]
     },
     {
