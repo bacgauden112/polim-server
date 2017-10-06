@@ -178,5 +178,17 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             result: "delete success!"
         };
     }
+
+    async editAddress(customerId, id, data): Promise<any> {
+        return {
+            "id": 9999,
+            "streetAddress": "Số 28 Ngõ 422 Đường Kim Giang",
+            "districtId": "VN.HI.HM",
+            "provinceId": "VN.HI",
+            "contactName": "Thanh 2",
+            "contactPhone": "0869137463",
+            "isDefault": false
+        };
+    }
     //endregion
 }
