@@ -105,9 +105,9 @@ export class PurchaseOrder {
             .createError(`Customer id invalid`, 401, 'INVALID_ID');
     }
 
-    public static async deleteAddress(ctx, id){
+    public static async deleteAddress(ctx, cid, id){
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        if(customerId == id) {
+        if(customerId == cid) {
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory

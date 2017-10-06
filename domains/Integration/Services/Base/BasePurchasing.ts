@@ -15,7 +15,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         GET_FEATURE_ORDER_API: 'GET_FEATURE_ORDER_API',
         GET_ADDRESS_API: 'GET_ADDRESS_API',
         CREATE_ADDRESS_API: 'CREATE_ADDRESS_API',
-        UPDATE_ADDRESS_API: 'UPDATE_ADDRESS_API'
+        UPDATE_ADDRESS_API: 'UPDATE_ADDRESS_API',
+        DELETE_ADDRESS_API: 'DELETE_ADDRESS_API'
     };
 
     /**
@@ -296,7 +297,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             id: id
         };
 
-        let url = this.getSetting(BasePurchasing.SETTING_KEY.GET_ADDRESS_API);
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.DELETE_ADDRESS_API);
+        url = url.replace("{id}", id);
 
         if (!url) {
             throw ErrorFactory
