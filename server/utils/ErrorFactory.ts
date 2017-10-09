@@ -24,10 +24,9 @@ export class ErrorFactory{
      * @param details
      */
     public static createError(message: string, httpCode: number, code: string, details = null) {
-        let err:any = new Error(message);
+        let err:any = new Error();
         err.statusCode = httpCode;
         err.code = code;
-        err.name = code;
         err.message = message;
 
         if (err.statusCode < 500 && details) {
