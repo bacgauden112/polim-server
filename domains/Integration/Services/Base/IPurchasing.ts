@@ -8,6 +8,7 @@ export interface IPurchasing {
     createAddress(customerId:number, datas): Promise<any>;
     editAddress(customerId:number, id, datas): Promise<any>;
     deleteAddress(customerId:number, id: number): Promise<any>;
+    createOrder(customerId:number, data): Promise<IOrder>;
 }
 
 export interface IExchangeRate {
@@ -31,6 +32,17 @@ export interface IExchangeRate {
      * Thời gian áp dụng đến
      */
     appliedTo?: Date
+}
+
+export interface IOrder {
+    id: number,
+    itemId: number,
+    featureCode: string,
+    sellerId:number,
+    sellerName: string,
+    sellerSource: string,
+    sellerUrl: string,
+    totalPrice: number
 }
 
 export interface IOrderFeature {

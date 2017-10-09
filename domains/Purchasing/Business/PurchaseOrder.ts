@@ -17,9 +17,9 @@ export class PurchaseOrder {
     public static async getExchangeRate(ctx, appliedTime) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
 
-        let loopback:LoopBackBase = require('loopback');
+        let loopback: LoopBackBase = require('loopback');
         let exchangeRateModel = loopback.getModel('ExchangeRate');
-        let exchangeRate:ExchangeRate = await exchangeRateModel.findOne({
+        let exchangeRate: ExchangeRate = await exchangeRateModel.findOne({
             where: {
                 "modifier": customerId
             }
@@ -28,21 +28,21 @@ export class PurchaseOrder {
         // check exp exchange rate
         let isExpired = false;
 
-        if(exchangeRate) {
+        if (exchangeRate) {
             let preDate = exchangeRate.modifiedAt;
             let curDate = new Date();
-            if(curDate.getDay() - preDate.getDay() >= 1) {
+            if (curDate.getDay() - preDate.getDay() >= 1) {
                 isExpired = true;
             } else {
                 isExpired = false;
             }
         }
 
-        if(!exchangeRate || isExpired) {
+        if (!exchangeRate || isExpired) {
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory
-                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                    .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
             }
             let result = await purchasingService.getExchange(customerId, appliedTime);
             result['modifier'] = customerId;
@@ -50,7 +50,7 @@ export class PurchaseOrder {
                 "where": {
                     "modifier": customerId
                 }
-            },result);
+            }, result);
             exchangeRate = await exchangeRateModel.findOne({
                 where: {
                     "modifier": customerId
@@ -74,7 +74,7 @@ export class PurchaseOrder {
         let purchasingService = await IntegrationService.getPurchasingService(customerId);
         if (!purchasingService) {
             throw ErrorFactory
-                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
         }
 
         return await purchasingService.getOrderFeature(customerId, appliedTime);
@@ -86,24 +86,24 @@ export class PurchaseOrder {
      * @param datas
      * @returns {Promise<IFee>}
      */
-    public static async getFee(ctx, datas){
+    public static async getFee(ctx, datas) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
         let purchasingService = await IntegrationService.getPurchasingService(customerId);
         if (!purchasingService) {
             throw ErrorFactory
-                .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
         }
 
         return await purchasingService.getFee(customerId, datas);
     }
 
-    public static async getAddress(ctx, id){
+    public static async getAddress(ctx, id) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        if(customerId == id) {
+        if (customerId == id) {
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory
-                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                    .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
             }
 
             return await purchasingService.getAddress(customerId);
@@ -113,13 +113,13 @@ export class PurchaseOrder {
     }
 
 
-    public static async createAddress(ctx, id, datas){
+    public static async createAddress(ctx, id, datas) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        if(customerId == id) {
+        if (customerId == id) {
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory
-                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                    .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
             }
 
             return await purchasingService.createAddress(customerId, datas);
@@ -128,14 +128,14 @@ export class PurchaseOrder {
             .createError(`Customer id invalid`, 401, 'INVALID_ID');
     }
 
-    public static async editAddress(ctx, cid, id, data){
+    public static async editAddress(ctx, cid, id, data) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        if(customerId == cid) {
+        if (customerId == cid) {
 
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory
-                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                    .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
             }
 
             return await purchasingService.editAddress(customerId, id, data);
@@ -144,13 +144,13 @@ export class PurchaseOrder {
             .createError(`Customer id invalid`, 401, 'INVALID_ID');
     }
 
-    public static async deleteAddress(ctx, cid, id){
+    public static async deleteAddress(ctx, cid, id) {
         let customerId = SecurityService.getCurrentCustomerId(ctx);
-        if(customerId == cid) {
+        if (customerId == cid) {
             let purchasingService = await IntegrationService.getPurchasingService(customerId);
             if (!purchasingService) {
                 throw ErrorFactory
-                    .createError(`Customer has not installed any purchasing app yet`,400,'INVALID_SERVICE');
+                    .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
             }
 
             return await purchasingService.deleteAddress(customerId, id);
@@ -159,4 +159,14 @@ export class PurchaseOrder {
             .createError(`Customer id invalid`, 401, 'INVALID_ID');
     }
 
+    public static async createOrder(ctx, data) {
+        let customerId = SecurityService.getCurrentCustomerId(ctx);
+        let purchasingService = await IntegrationService.getPurchasingService(customerId);
+        if (!purchasingService) {
+            throw ErrorFactory
+                .createError(`Customer has not installed any purchasing app yet`, 400, 'INVALID_SERVICE');
+        }
+
+        return await purchasingService.createOrder(customerId, data);
+    }
 }

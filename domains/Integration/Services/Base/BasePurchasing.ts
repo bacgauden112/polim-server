@@ -16,7 +16,8 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         GET_ADDRESS_API: 'GET_ADDRESS_API',
         CREATE_ADDRESS_API: 'CREATE_ADDRESS_API',
         UPDATE_ADDRESS_API: 'UPDATE_ADDRESS_API',
-        DELETE_ADDRESS_API: 'DELETE_ADDRESS_API'
+        DELETE_ADDRESS_API: 'DELETE_ADDRESS_API',
+        CREATE_ORDER_API: 'CREATE_ORDER_API'
     };
 
     /**
@@ -312,6 +313,43 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
         let response = await client.request(
             url,
             HttpMethod.DELETE,
+            data
+        );
+
+        if (response.status != 200) {
+            let logger = Logger.factory('integration');
+            let context = {
+                request: {
+                    url: url,
+                    data: data
+                },
+                response: await response.text()
+            };
+            logger.error(new Error("Error response from server"), context);
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().errorMessage);
+        }
+        else {
+            return await response.json();
+        }
+    }
+
+    public async createOrder(customerId: number, data): Promise<any> {
+        let client:BaseAPIClient = await this.createClient(customerId);
+
+        let url = this.getSetting(BasePurchasing.SETTING_KEY.CREATE_ORDER_API);
+
+        if (!url) {
+            throw ErrorFactory
+                .createError('Integration do not support this function yet', 400, 'NOT_SUPPORTED',
+                    [
+                        ErrorFactory.ERRORS.E101_NOT_IMPLEMENTED
+                    ]
+                );
+        }
+
+        let response = await client.request(
+            url,
+            HttpMethod.POST,
             data
         );
 

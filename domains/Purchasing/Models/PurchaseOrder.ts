@@ -147,6 +147,85 @@ export = function (Model) {
         }
     );
 
+    /**
+     * API tạp đơn hàng
+     * @param {number} ctx
+     * @param data
+     * @param next
+     */
+    Model.createOrder = function (ctx, data, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.createOrder(ctx, data), next);
+    };
 
-
+    Model.remoteMethod(
+        'createOrder',
+        {
+            accepts: [
+                {
+                    arg: 'context', type: 'Object', http: function (ctx) {
+                    return ctx;
+                }
+                },
+                {
+                    arg: 'data',
+                    type: 'Object',
+                    description: "Thông tin người bán, danh sách sản phẩm và danh sách các tính chất đơn",
+                    default:`{
+ "seller": {
+   "id": "string",
+   "name": "string",
+   "source": "string"
+ },
+ "items": [
+   {
+     "originId": "number",
+     "originName": "string",
+     "name": "string",
+     "originUrl": "string",
+     "mainImage": "string",
+     "variantImage": "string",
+     "quantity": "number",
+     "originPrice": "number",
+     "salePrice": "number",
+     "originCurrency": "string",
+     "properties": [
+       {
+         "id":"string",
+         "originName": "string",
+         "name": "string"
+       }
+     ],
+     "note": "string"
+   }
+ ],
+ "features": [
+   {
+     "code": "string"
+   }
+ ]
+}`,
+                    http: {
+                        source: 'body'
+                    }
+                },
+            ],
+            returns: {
+                arg: 'order',
+                type: 'Object',
+                root: true,
+                default: `{
+    "id": 1234,
+    "itemId": 1,
+    "featureCode": "WOOD_CRATING",
+    "sellerId": 3333,
+    "sellerName": "Taobao",
+    "sellerSource": "taobao.com",
+    "sellerUrl": "taobao.com",
+    "totalPrice": 1000000
+}`
+            },
+            http: {path: '/createOrder', verb: 'post'},
+            description: "thông tin đơn hàng"
+        }
+    );
 }

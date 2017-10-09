@@ -4,7 +4,7 @@
 import {BaseIntegration} from "./Base/BaseIntegration";
 import {IAddress, IFee, IPurchasing, IServiceFee} from "./Base/IPurchasing";
 import {IExchangeRate} from "./Base/IPurchasing";
-import {IOrderFeature, IGroup, IFeature} from "./Base/IPurchasing";
+import {IOrderFeature, IGroup, IFeature, IOrder} from "./Base/IPurchasing";
 /**
  * Mockup service, dùng cho việc test
  */
@@ -188,6 +188,19 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             "contactName": "Thanh 2",
             "contactPhone": "0869137463",
             "isDefault": false
+        };
+    }
+
+    async createOrder(customerId, data): Promise<IOrder> {
+        return {
+            "id": 1234,
+            "itemId": 1,
+            "featureCode": "WOOD_CRATING",
+            "sellerId": 3333,
+            "sellerName": "Taobao",
+            "sellerSource": "taobao.com",
+            "sellerUrl": "taobao.com",
+            "totalPrice": 1000000
         };
     }
     //endregion
