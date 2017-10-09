@@ -1,5 +1,7 @@
 import {BaseAPIClient} from "../Base/BaseAPIClient";
 import {Logger} from "../../../../libs/Logger";
+import {IntegrationAPIError} from "../Base/IntegrationErrors";
+
 /**
  * Created by Piggat on 8/9/2017.
  */
@@ -19,9 +21,9 @@ export class APIClient extends BaseAPIClient {
      * @param data
      * @returns {string}
      */
-    protected getQueryString(data):string {
+    protected getQueryString(data): string {
         let query = super.getQueryString(data);
-        if(data == 'x') {
+        if (data == 'x') {
             query = `&token=${this._accessToken}`;
         }
         if (query == '') {
@@ -42,36 +44,16 @@ export class APIClient extends BaseAPIClient {
      */
     public async request(url, method, data) {
         let response = await super.request(url, method, data);
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let responseText = await response.text();
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: responseText
-            };
-            logger.error(new Error("Error response from server"), context);
-            return {
-                status: response.status,
-                json: function() {
-                    return null;
-                },
-                text: function() {
-                    return responseText;
-                }
-            };
-        }
-        else {
-            data = await response.json();
+        console.log('response');
+        console.log(response);
 
-            return {
-                status: data.error ? 500 : 200,
-                json: function() {
-                    return data.data;
-                }
-            };
-        }
+        data = await response.json();
+
+        return {
+            status: data.error ? 888 : 200,
+            json: function () {
+                return data.data;
+            }
+        };
     }
 }

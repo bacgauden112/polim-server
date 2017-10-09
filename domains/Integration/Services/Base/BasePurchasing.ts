@@ -60,7 +60,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -108,7 +108,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -156,7 +156,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -198,7 +198,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -241,7 +241,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -282,7 +282,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
         }
         else {
             return await response.json();
@@ -325,7 +325,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
                 response: await response.text()
             };
             logger.error(new Error("Error response from server"), context);
-            throw IntegrationAPIError;
+            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().errorMessage);
         }
         else {
             return await response.json();
