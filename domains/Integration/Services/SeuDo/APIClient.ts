@@ -44,16 +44,17 @@ export class APIClient extends BaseAPIClient {
      */
     public async request(url, method, data) {
         let response = await super.request(url, method, data);
-        console.log('response');
-        console.log(response);
 
-        data = await response.json();
+        if(response.status == 500 || response.status == 200) {
+            data = await response.json();
 
-        return {
-            status: data.error ? 888 : 200,
-            json: function () {
-                return data.data;
-            }
-        };
+            return {
+                status: data.error ? 888 : 200,
+                json: function () {
+                    return data.data;
+                }
+            };
+        }
+        throw IntegrationAPIError;
     }
 }
