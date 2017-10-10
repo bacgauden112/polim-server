@@ -24,15 +24,17 @@ export class APIClient extends BaseAPIClient {
     protected getQueryString(data): string {
         let query = super.getQueryString(data);
         if (data == 'x') {
-            query = `&token=${this._accessToken}`;
+            query = `?token=${this._accessToken}&userId=${this._externalId}`;
         }
         if (query == '') {
-            query = `?token=${this._accessToken}`;
+            query = `?token=${this._accessToken}&userId=${this._externalId}`;
         }
         else {
-            query += `&token=${this._accessToken}`;
+            query += `&token=${this._accessToken}&userId=${this._externalId}`;
         }
 
+        console.log('query');
+        console.log(query);
         return query
     }
 

@@ -168,9 +168,9 @@ export class MockupService extends BaseIntegration implements IPurchasing {
     }
 
     async createAddress(customerId, datas): Promise<any> {
-        return {
-            result: 'success!'
-        };
+        let ret = datas;
+        ret['id'] = 9999;
+        return datas;
     }
 
     async deleteAddress(customerId, id): Promise<any> {
