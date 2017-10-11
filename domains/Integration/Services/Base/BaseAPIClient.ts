@@ -15,6 +15,12 @@ export class BaseAPIClient {
     protected _accessToken;
     protected _timeout;
     protected _compress;
+    //externalId
+    protected _externalId;
+
+    public set ExternalId(value) {
+        this._externalId = value;
+    }
 
     public set AccessToken(value) {
         this._accessToken = value;

@@ -22,9 +22,10 @@ export class SeuDoService extends BaseIntegration {
     /**
      * Create client object
      */
-    protected async createClientWithAccessToken(accessToken: string):Promise<BaseAPIClient> {
+    protected async createClientWithAccessToken(accessToken: string, externalId:number):Promise<BaseAPIClient> {
         let client = new APIClient();
         client.AccessToken = accessToken;
+        client.ExternalId= externalId;
         return client;
     }
 }

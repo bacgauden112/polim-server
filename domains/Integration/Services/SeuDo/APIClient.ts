@@ -24,13 +24,13 @@ export class APIClient extends BaseAPIClient {
     protected getQueryString(data): string {
         let query = super.getQueryString(data);
         if (data == 'x') {
-            query = `&token=${this._accessToken}`;
+            query = `?token=${this._accessToken}&userId=${this._externalId}`;
         }
         if (query == '') {
-            query = `?token=${this._accessToken}`;
+            query = `?token=${this._accessToken}&userId=${this._externalId}`;
         }
         else {
-            query += `&token=${this._accessToken}`;
+            query += `&token=${this._accessToken}&userId=${this._externalId}`;
         }
 
         return query
@@ -44,16 +44,17 @@ export class APIClient extends BaseAPIClient {
      */
     public async request(url, method, data) {
         let response = await super.request(url, method, data);
-        console.log('response');
-        console.log(response);
 
-        data = await response.json();
+        if(response.status == 500 || response.status == 200) {
+            data = await response.json();
 
-        return {
-            status: data.error ? 888 : 200,
-            json: function () {
-                return data.data;
-            }
-        };
+            return {
+                status: data.error ? 888 : 200,
+                json: function () {
+                    return data.data;
+                }
+            };
+        }
+        throw IntegrationAPIError;
     }
 }

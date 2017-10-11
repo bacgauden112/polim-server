@@ -76,7 +76,9 @@ export class BaseIntegration extends BaseDomainService {
             return this._parent.createClient(customerId);
         }
         let accessToken = await this.getAccessToken(customerId);
-        return await this.createClientWithAccessToken(accessToken);
+        // get externalId
+        let externalId = await this.getExternalId(customerId);
+        return await this.createClientWithAccessToken(accessToken, externalId);
     }
 
     /**
@@ -84,12 +86,13 @@ export class BaseIntegration extends BaseDomainService {
      * @param accessToken
      * @returns {Promise<BaseAPIClient>}
      */
-    protected async createClientWithAccessToken(accessToken:string):Promise<BaseAPIClient> {
+    protected async createClientWithAccessToken(accessToken:string, externalId:number):Promise<BaseAPIClient> {
         if (this._parent) {
-            return this._parent.createClientWithAccessToken(accessToken);
+            return this._parent.createClientWithAccessToken(accessToken, externalId);
         }
         let client = new BaseAPIClient();
         client.AccessToken = accessToken;
+        client.ExternalId= externalId;
         return client;
     }
 
@@ -117,6 +120,32 @@ export class BaseIntegration extends BaseDomainService {
         }
 
         return integration.accessToken;
+    }
+
+    /**
+     * Lấy externalId
+     * @param {number} customerId
+     * @returns {Promise<string>}
+     */
+    protected async getExternalId(customerId:number):Promise<number> {
+        if (this._parent) {
+            return this._parent.getExternalId(customerId);
+        }
+        let loopback:LoopBackBase = require('loopback');
+        let customerIntegrationModel = loopback.getModel('CustomerIntegration');
+
+        let integration:CustomerIntegration = await customerIntegrationModel.findOne({
+            where: {
+                customerId: customerId,
+                integrationId: this._id
+            }
+        });
+
+        if (!integration) {
+            throw new Error(`Customer ${customerId} has not installed ${this._name} yet`);
+        }
+
+        return integration.externalId;
     }
 
     /**

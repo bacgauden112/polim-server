@@ -109,7 +109,7 @@ export class PurchaseOrder {
             return await purchasingService.getAddress(customerId);
         }
         throw ErrorFactory
-            .createError(`Customer id invalid`, 401, 'INVALID_ID');
+            .createError(`Customer id invalid`, 403, 'INVALID_ID');
     }
 
 
@@ -125,7 +125,7 @@ export class PurchaseOrder {
             return await purchasingService.createAddress(customerId, datas);
         }
         throw ErrorFactory
-            .createError(`Customer id invalid`, 401, 'INVALID_ID');
+            .createError(`Customer id invalid`, 403, 'INVALID_ID');
     }
 
     public static async editAddress(ctx, cid, id, data) {
@@ -141,7 +141,7 @@ export class PurchaseOrder {
             return await purchasingService.editAddress(customerId, id, data);
         }
         throw ErrorFactory
-            .createError(`Customer id invalid`, 401, 'INVALID_ID');
+            .createError(`Customer id invalid`, 403, 'INVALID_ID');
     }
 
     public static async deleteAddress(ctx, cid, id) {
@@ -156,7 +156,7 @@ export class PurchaseOrder {
             return await purchasingService.deleteAddress(customerId, id);
         }
         throw ErrorFactory
-            .createError(`Customer id invalid`, 401, 'INVALID_ID');
+            .createError(`Customer id invalid`, 403, 'INVALID_ID');
     }
 
     public static async createOrder(ctx, data) {
