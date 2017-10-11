@@ -27,13 +27,15 @@ export class Customer {
         let customer = await Model.findById(customerId);
 
         if(!data.hasOwnProperty('password')) {
-            return ErrorFactory.createError('Không có mật khẩu', 401, "NO_PASSWORD");
+            throw ErrorFactory.createError('Không có mật khẩu', 400, "NO_PASSWORD");
         }
         let result = await customer.hasPassword(data.password);
         if(result == false) {
-            return ErrorFactory.createError('Mật khẩu không đúng', 400, "CONFIRM_FAILED");
+            throw ErrorFactory.createError('Mật khẩu không đúng', 400, "CONFIRM_FAILED");
         }
-        return result;
+        return {
+            result: result
+        };
     }
 
 }

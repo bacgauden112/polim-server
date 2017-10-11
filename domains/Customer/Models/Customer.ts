@@ -213,7 +213,7 @@ export = function (Customer) {
                 },
                 default: `{"password":"string"}`
             }],
-            returns: {arg: 'result', type: 'boolean'},
+            returns: {arg: 'result', type: 'boolean', root: true},
             http: {path: '/confirmPassword', verb: 'post'},
             description: "Xác nhận mật khẩu"
         }
