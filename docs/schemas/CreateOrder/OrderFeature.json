@@ -1,0 +1,55 @@
+{
+  "name": "OrderFeature",
+  "relations": {
+  },
+  "properties": {
+    "featureId": {
+      "type": "number",
+      "required": true,
+      "description": "Id tính chất đơn",
+      "example": 4
+    },
+    "orderId": {
+      "type": "number",
+      "required": true,
+      "description": "Id đơn hàng",
+      "example": 9999
+    },
+    "featureCode": {
+      "type": "string",
+      "required": false,
+      "description": "Mã tính chất đơn",
+      "example": "BUYING"
+    },
+    "featureName": {
+      "type": "string",
+      "required": false,
+      "description": "Tên tính chất đơn",
+      "example": "Mua hàng"
+    },
+    "groupCode": {
+      "type": "string",
+      "required": false,
+      "description": "Mã nhóm của tính chất đơn",
+      "example": "INTERNATIONAL"
+    },
+    "groupName": {
+      "type": "string",
+      "required": false,
+      "description": "Tên nhóm của tính chất đơn",
+      "example": "Vận chuyển quốc tế"
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": false,
+      "description": "Thời gian được tạo của OrderFeature",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "modifiedAt": {
+      "type": "Date",
+      "required": false,
+      "description": "Thời gian được sửa của OrderFeature",
+      "example": "2017-08-23T09:34:23.000X"
+    }
+  }
+}
