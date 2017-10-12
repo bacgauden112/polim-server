@@ -37,12 +37,17 @@ export interface IExchangeRate {
 export interface IOrder {
     id: number,
     itemId: number,
-    featureCode: string,
     sellerId:number,
     sellerName: string,
     sellerSource: string,
     sellerUrl: string,
-    totalPrice: number
+    totalFee: number,
+    serviceFee: number,
+    totalPayable: number,
+    status: string,
+    isDeleted: boolean,
+    createdBy: number,
+    createdAt: Date
 }
 
 export interface IOrderFeature {

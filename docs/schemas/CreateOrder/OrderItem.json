@@ -1,0 +1,155 @@
+{
+  "name": "OrderItem",
+  "relations": {
+  },
+  "properties": {
+    "originId": {
+      "type": "string",
+      "required": true,
+      "description": "Id của sản phẩm trên trang nguồn hàng",
+      "example": "123"
+    },
+    "originName": {
+      "type": "string",
+      "required": true,
+      "description": "Tên sản phẩm gốc",
+      "example": "低帮鞋"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Tên sản phẩm sau khi đã được dịch",
+      "example": "Giày thấp"
+    },
+    "originUrl": {
+      "type": "string",
+      "required": true,
+      "description": "Đường dẫn gốc đến sản phẩm trên trang nguồn hàng",
+      "example": "https://m.taobao.com/...2300000200232057058"
+    },
+    "mainImage": {
+      "type": "Array",
+      "required": true,
+      "description": "Hình ảnh đại diện chung của sản phẩm",
+      "example": [
+        "https://img.alicdn.com/...FXX_300x300.jpg",
+        "https://img.alicdn.com/...FXX_450x450.jpg"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "variantImage": {
+      "type": "string",
+      "required": true,
+      "description": "Hình ảnh đại diện cho mẫu sản phẩm mà khách hàng đã chọn",
+      "example": "https://img.alicdn.com/...FXX_300x300.jpg"
+    },
+    "quantity": {
+      "type": "number",
+      "required": true,
+      "description": "Số lượng sản phẩm muốn mua",
+      "example": 2203
+    },
+    "quantityDelivery": {
+      "type": "number",
+      "required": true,
+      "description": "Số lượng sản phẩm người bán giao",
+      "example": 2203
+    },
+    "quantityReceive": {
+      "type": "number",
+      "required": true,
+      "description": "Số lượng sản phẩm thực nhận",
+      "example": 2000
+    },
+    "originPrice": {
+      "type": "number",
+      "required": true,
+      "description": "Giá gốc của sản phẩm",
+      "example": 500
+    },
+    "salePrice": {
+      "type": "number",
+      "required": true,
+      "description": "Giá bán thực tế của sản phẩm",
+      "example": 450
+    },
+    "originCurrency" : {
+      "type": "number",
+      "required": true,
+      "description": "Mã tiền tệ của giá sản phẩm theo ISO 4217",
+      "example": "CNY"
+    },
+    "properties": {
+      "type": "Array",
+      "required": true,
+      "description": "Mảng các thuộc tính của sản phẩm đại diện cho mẫu sản phẩm khách chọn",
+      "example": {
+        "id":"12:45039",
+        "originName": "低帮",
+        "name": "Đen"
+      },
+      "items": {
+        "type": "CartItemProperty"
+      }
+    },
+    "note" : {
+      "type": "string",
+      "required": false,
+      "description": "Ghi chú cho sản phẩm",
+      "example": "Nếu thiếu hàng phải gọi điện lại cho shop trước khi mua"
+    },
+    "minQuantity": {
+      "type": "number",
+      "required": false,
+      "description": "Số lượng sản phẩm tối thiểu phải mua",
+      "example": 50
+    },
+    "batchSize": {
+      "type": "number",
+      "required": false,
+      "description": "Kích thước một batch sản phẩm (số lượng sản phẩm mua phải là bội số của nó)",
+      "example": 5
+    },
+    "priceTables": {
+      "type": "Array",
+      "required": false,
+      "description": "Bảng giá sản phẩm theo số lượng",
+      "example": {
+        "quantityMin": 0,
+        "quantityMax": 10,
+        "originPrice": 20,
+        "salePrice": 20,
+        "originCurrency": "CNY"
+      },
+      "items": {
+        "type": "CartItemPricePolicy"
+      }
+    },
+    "stock": {
+      "type": "number",
+      "required": false,
+      "description": "Số lượng hàng tồn của sản phẩm này",
+      "example": 100
+    },
+    "seller": {
+      "type": "Seller",
+      "required": true,
+      "description": "Người bán",
+      "example": "123"
+    },
+    "modifiedAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được sửa của OrderItem",
+      "example": "2017-08-23T09:34:23.000X"
+    },
+    "createdAt": {
+      "type": "Date",
+      "required": true,
+      "description": "Thời gian được tạo của OrderItem",
+      "example": "2017-08-23T09:34:23.000X"
+    }
+  }
+}

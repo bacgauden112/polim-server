@@ -189,12 +189,17 @@ export class MockupService extends BaseIntegration implements IPurchasing {
         return {
             "id": 1234,
             "itemId": 1,
-            "featureCode": "WOOD_CRATING",
             "sellerId": 3333,
             "sellerName": "Taobao",
             "sellerSource": "taobao.com",
             "sellerUrl": "taobao.com",
-            "totalPrice": 1000000
+            "totalFee": 1000000,
+            "serviceFee": 122234,
+            "totalPayable": 122234,
+            "status": "completed",
+            "isDeleted": false,
+            "createdBy": 1,
+            "createdAt": new Date()
         };
     }
     //endregion
