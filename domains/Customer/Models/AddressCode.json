@@ -40,6 +40,13 @@
       "postgresql": {
         "columnName": "pid"
       }
+    },
+    "order": {
+      "type": "number",
+      "required": false,
+      "postgresql": {
+        "columnName": "order"
+      }
     }
   },
   "validations": [],
