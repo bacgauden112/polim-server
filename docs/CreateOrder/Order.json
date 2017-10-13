@@ -9,6 +9,26 @@
       "description": "Id đơn hàng",
       "example": 9999
     },
+    "code": {
+      "type": "string",
+      "required": true,
+      "description": "Mã đơn hàng",
+      "example": "PLM44"
+    },
+    "integration": {
+      "type": "Integration",
+      "required": true,
+      "description": "Đơn được tạo từ dịch vụ tích hợp",
+      "example": {
+        "integrationId": 2,
+        "integrationName": "Sếu Đỏ",
+        "integrationCode": "SEU_DO",
+        "logo": ""
+      },
+      "items": {
+        "type": "Integration"
+      }
+    },
     "items": {
       "type": "Array",
       "required": true,
@@ -76,24 +96,6 @@
       "required": true,
       "description": "site người bán",
       "example": "wangwang.net"
-    },
-    "quantity": {
-      "type": "number",
-      "required": true,
-      "description": "Số lượng sản phẩm muốn mua",
-      "example": 2203
-    },
-    "quantityDelivery": {
-      "type": "number",
-      "required": true,
-      "description": "Số lượng sản phẩm giao",
-      "example": 2203
-    },
-    "quantityReceive": {
-      "type": "number",
-      "required": true,
-      "description": "Số lượng sản phẩm nhận",
-      "example": 2000
     },
     "totalFee": {
       "type": "number",
