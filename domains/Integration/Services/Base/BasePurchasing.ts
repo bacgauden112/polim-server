@@ -51,21 +51,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     /**
@@ -99,21 +85,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     /**
@@ -147,21 +119,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     public async createAddress(customerId: number, datas): Promise<IFee> {
@@ -189,21 +147,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     public async editAddress(customerId: number, id, datas): Promise<IFee> {
@@ -232,21 +176,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     public async getAddress(customerId: number): Promise<IAddress[]> {
@@ -273,21 +203,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().error);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     public async deleteAddress(customerId: number, id): Promise<any> {
@@ -316,21 +232,7 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().errorMessage);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 
     public async createOrder(customerId: number, data): Promise<any> {
@@ -353,20 +255,6 @@ export class BasePurchasing extends BaseIntegration implements IPurchasing {
             data
         );
 
-        if (response.status != 200) {
-            let logger = Logger.factory('integration');
-            let context = {
-                request: {
-                    url: url,
-                    data: data
-                },
-                response: await response.text()
-            };
-            logger.error(new Error("Error response from server"), context);
-            return ErrorFactory.createError(response.json().errorMessage, response.json().error, response.json().errorMessage);
-        }
-        else {
-            return await response.json();
-        }
+        return await response.json();
     }
 }

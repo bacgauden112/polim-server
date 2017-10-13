@@ -179,8 +179,8 @@ export = function (Customer) {
      * @param data
      * @param next
      */
-    Customer.editAddress = function (context, cid, id, data, next) {
-        LoopBackUtils.processPromiseCallback(PurchaseOrder.editAddress(context, cid, id, data), next);
+    Customer.editAddress = function (context, cid, id, datas, next) {
+        LoopBackUtils.processPromiseCallback(PurchaseOrder.editAddress(context, cid, id, datas), next);
     };
     /**
      * API chỉnh sửa địa chỉ của khách
@@ -201,17 +201,17 @@ export = function (Customer) {
                     arg: 'id', type: 'number', required: true
                 },
                 {
-                    arg: 'data',
+                    arg: 'datas',
                     type: 'Object',
                     description: "Địa chỉ nhận hàng",
                     default: `{
-                         "streetAddress": "string",
-                         "districtId": "string",
-                         "provinceId": "string",
-                         "contactName": "string",
-                         "contactPhone": "string",
-                         "isDefault": "boolean"
-                    }`,
+    "streetAddress": "string",
+    "districtId": "string",
+    "provinceId": "string",
+    "contactName": "string",
+    "contactPhone": "string",
+    "isDefault": "boolean"
+}`,
                     http: {
                         source: 'body'
                     }
@@ -245,8 +245,8 @@ export = function (Customer) {
     );
     //endregion
     //region -- Confirm password --
-    Customer.confirmPassword = function(ctx, data, next) {
-        LoopBackUtils.processPromiseCallback(CustomerBussiness.confirmPassword(Customer, data, ctx),next);
+    Customer.confirmPassword = function(ctx, datas, next) {
+        LoopBackUtils.processPromiseCallback(CustomerBussiness.confirmPassword(Customer, datas, ctx),next);
     };
 
     Customer.remoteMethod(
@@ -258,7 +258,7 @@ export = function (Customer) {
                 }
             },
             {
-                arg: 'data',
+                arg: 'datas',
                 type: 'Object',
                 description: "Mật khẩu",
                 http: {
