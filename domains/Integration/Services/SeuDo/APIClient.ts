@@ -1,6 +1,7 @@
 import {BaseAPIClient} from "../Base/BaseAPIClient";
 import {Logger} from "../../../../libs/Logger";
 import {IntegrationAPIError} from "../Base/IntegrationErrors";
+import {ErrorFactory} from "../../../../server/utils/ErrorFactory";
 
 /**
  * Created by Piggat on 8/9/2017.
@@ -44,17 +45,31 @@ export class APIClient extends BaseAPIClient {
      */
     public async request(url, method, data) {
         let response = await super.request(url, method, data);
+        data = await response.json();
 
-        if(response.status == 500 || response.status == 200) {
-            data = await response.json();
-
+        // Lỗi trả về bên Sếu Đỏ
+        if(response.status == 500 ) {
+            throw ErrorFactory.createError(data.data.errorMessage, 400, data.data.errorMessage);
+        }
+        // Thành công
+        if(response.status == 200) {
             return {
-                status: data.error ? 888 : 200,
+                status: 200,
                 json: function () {
                     return data.data;
                 }
             };
         }
+        // Lỗi kết nối
+        let logger = Logger.factory('integration');
+        let context = {
+            request: {
+                url: url,
+                data: data
+            },
+            response: await response.text()
+        };
+        logger.error(new Error("Error response from server"), context);
         throw IntegrationAPIError;
     }
 }
