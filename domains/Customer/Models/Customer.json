@@ -114,7 +114,7 @@
       }
     },
     "state": {
-      "type": "string",
+      "type": "number",
       "postgresql": {
         "columnName": "state",
         "dataType": "SMALLINT"
