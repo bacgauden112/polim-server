@@ -15,20 +15,6 @@
       "description": "Mã đơn hàng",
       "example": "PLM44"
     },
-    "integration": {
-      "type": "Integration",
-      "required": true,
-      "description": "Đơn được tạo từ dịch vụ tích hợp",
-      "example": {
-        "integrationId": 2,
-        "integrationName": "Sếu Đỏ",
-        "integrationCode": "SEU_DO",
-        "logo": ""
-      },
-      "items": {
-        "type": "Integration"
-      }
-    },
     "items": {
       "type": "Array",
       "required": true,
@@ -71,6 +57,20 @@
       },
       "items": {
         "type": "OrderItem"
+      }
+    },
+    "features": {
+      "type": "Array",
+      "required": true,
+      "description": "Mảng các tính chất đơn",
+      "example": {
+        "featureCode": "BUYING",
+        "featureName": "Mua hàng",
+        "groupCode": "INTERNATIONAL",
+        "groupName": "Vận chuyển quốc tế"
+      },
+      "items": {
+        "type": "OrderFeature"
       }
     },
     "sellerId": {
