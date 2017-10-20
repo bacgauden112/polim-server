@@ -15,10 +15,10 @@
       "description": "Tên của người bán trên site nguồn hàng",
       "example": "heelShop"
     },
-    "source": {
+    "sellerHomeland": {
       "type": "string",
       "required": true,
-      "description": "Site nguồn hàng",
+      "description": "alias site mua hàng ví dụ taobao, tmall",
       "example": "taobao.com"
     },
     "originUrl": {
@@ -27,11 +27,11 @@
       "description": "Đường dẫn đến thông tin shop trên site nguồn hàng",
       "example": "https://someshop.taobao.com"
     },
-    "wangwang": {
+    "sellerAliwang": {
       "type": "string",
       "required": false,
       "description": "Tài khoản wangwang của người bán trên site nguồn hàng",
-      "example": "低帮"
+      "example": "wangwang"
     },
     "modifiedAt": {
       "type": "Date",

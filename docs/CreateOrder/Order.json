@@ -79,16 +79,16 @@
       "description": "Id người bán",
       "example": "1234"
     },
-    "sellerName": {
+    "sellerAliwang": {
       "type": "string",
       "required": true,
-      "description": "Tên người bán",
-      "example": "Wang wang"
+      "description": "Tên tài khoản aliwang",
+      "example": "wangwang"
     },
-    "sellerSource": {
+    "sellerHomeland": {
       "type": "string",
       "required": true,
-      "description": "site nguồn hàng",
+      "description": "alias site mua hàng ví dụ taobao, tmall",
       "example": "taobao.com"
     },
     "sellerUrl": {
