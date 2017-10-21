@@ -185,14 +185,14 @@ export class MockupService extends BaseIntegration implements IPurchasing {
         return ret;
     }
 
-    async createOrder(customerId, data): Promise<IOrder> {
+    async createOrder(customerId, data): Promise<any> {
         let id = 1234;
         if(data.hasOwnProperty("order_id")) {
             if(data.order_id != "") {
                 id = data.order_id;
             }
         }
-        return {
+        let success = {
             "id": id,
             "itemId": 1,
             "sellerId": 3333,
@@ -207,6 +207,16 @@ export class MockupService extends BaseIntegration implements IPurchasing {
             "createdBy": 1,
             "createdAt": new Date()
         };
+        let failure = {
+            "error": {
+                "statusCode": 400,
+                "name": "Error",
+                "message": "Tạo đơn thất bại"
+            }
+        };
+        let returnArray = [success, failure];
+        let returnRandom = returnArray[Math.floor(Math.random() * returnArray.length)];
+        return returnRandom;
     }
     //endregion
 }
