@@ -186,8 +186,14 @@ export class MockupService extends BaseIntegration implements IPurchasing {
     }
 
     async createOrder(customerId, data): Promise<IOrder> {
+        let id = 1234;
+        if(data.hasOwnProperty("order_id")) {
+            if(data.order_id != "") {
+                id = data.order_id;
+            }
+        }
         return {
-            "id": 1234,
+            "id": id,
             "itemId": 1,
             "sellerId": 3333,
             "sellerName": "Taobao",
