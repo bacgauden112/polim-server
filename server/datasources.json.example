@@ -2,9 +2,9 @@
   "db": {
     "host": "172.16.102.123",
     "port": "5432",
-    "database": "polim",
-    "username": "polim",
-    "password": "polim",
+    "database": "gobiz",
+    "username": "gobiz",
+    "password": "gobiz",
     "name": "db",
     "debug": true,
     "connector": "postgresql"
