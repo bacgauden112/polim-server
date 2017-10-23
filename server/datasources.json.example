@@ -3,8 +3,8 @@
     "host": "db",
     "port": "5432",
     "database": "polim",
-    "username": "polim",
-    "password": "polim",
+    "username": "postgres",
+    "password": "",
     "name": "db",
     "debug": true,
     "connector": "postgresql"
