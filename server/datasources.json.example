@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "172.16.17.18",
+    "host": "db",
     "port": "5432",
     "database": "polim",
     "username": "polim",
