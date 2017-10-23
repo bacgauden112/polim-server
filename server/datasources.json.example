@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "172.16.17.18",
+    "port": "5432",
+    "database": "polim",
+    "username": "polim",
+    "password": "polim",
+    "name": "db",
+    "debug": true,
+    "connector": "postgresql"
+  }
+}
