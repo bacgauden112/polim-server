@@ -8,21 +8,5 @@
     "name": "db",
     "debug": true,
     "connector": "postgresql"
-  },
-  "redis": {
-      "name": "redis",
-      "host": "192.168.10.250",
-      "port": 6379,
-      "connector": "memory"
-  },
-  "transient": {
-    "name": "transient",
-    "connector": "transient"
-  },
-  "userFiles": {
-    "name": "userFiles",
-    "connector": "loopback-component-storage",
-    "provider": "filesystem",
-    "root": "D:\\Alimama\\f1 shipping\\server\\server\\userFiles"
   }
 }
